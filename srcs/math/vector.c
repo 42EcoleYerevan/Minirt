@@ -42,3 +42,19 @@ void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2)
 	tmp.z.x = mat1->x.x * mat2->z.x + mat1->y.x * mat2->z.y + mat1->z.x * mat2->z.z + mat1->w.x * mat2->z.w;
 	tmp.z.y = mat1->x.y * mat2->z.x + mat1->y.y * mat2->z.y;
 }
+
+t_vec	*vec_substr(t_vec *vec1, t_vec *vec2)
+{
+	t_vec	*res;
+
+	res = new_vector(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
+	return (res);
+}
+
+void	vec_mult_dot(t_vec *vec1, t_vec *vec2)
+{
+	float	res;
+
+	res = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
+	return (res);
+}
