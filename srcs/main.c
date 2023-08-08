@@ -11,6 +11,5 @@ int main()
 	win = mlx_new_window(mlx, WIDTH, HEIGHT, "Minirt");
 	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_loop(mlx);
-	printf("Hello World!\n");
 	return (0);
 }
