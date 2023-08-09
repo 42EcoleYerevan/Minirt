@@ -27,4 +27,9 @@ typedef struct s_mat {
 	t_vec	w;
 } t_mat;
 
+char **ft_tokenizer(char *path);
+
+// readline
+char *ft_readline(int fd);
+
 #endif
