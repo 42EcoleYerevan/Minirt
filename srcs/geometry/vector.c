@@ -6,7 +6,7 @@ t_vec	*new_vector(float x, float y, float z)
 
 	new = malloc(sizeof(t_vec));
 	if (!new)
-		exit_err("error: memory allocating failed.\n");
+		err_exit("error: memory allocating failed.\n");
 	new->x = x;
 	new->y = y;
 	new->z = z;

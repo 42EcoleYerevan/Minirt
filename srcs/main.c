@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-void	exit_err(char *str)
+void	err_exit(char *str)
 {
 	while(*str)
 		write(2, str++, 1);
@@ -10,7 +10,6 @@ void	exit_err(char *str)
 int main()
 {
 	void		*mlx;
-	void		*img;
 	void		*win;
 	t_vec		*sphere_center;
 	t_sphere	*sphere;

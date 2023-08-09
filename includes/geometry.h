@@ -29,6 +29,14 @@ typedef struct	s_scene
 	float		height;
 }				t_scene;
 
+typedef struct	s_vplane
+{
+	float	width;
+	float	height;
+	float	x_pixel;
+	float	y_pixel;
+}				t_vplane;
+
 typedef struct s_mat
 {
 	t_vec	x;
@@ -37,4 +45,4 @@ typedef struct s_mat
 	t_vec	w;
 } t_mat;
 
-#endif // !1
+#endif

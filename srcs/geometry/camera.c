@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_camera	*new_camera(t_vec *origin, t_vec direction, float fov)
+t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov)
 {
 	t_camera	*new;
 
