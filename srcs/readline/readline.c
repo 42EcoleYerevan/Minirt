@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 17:57:04 by agladkov          #+#    #+#             */
-/*   Updated: 2023/08/09 17:57:49 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:44:47 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*ft_rebuffer(char *buffer)
 	buffer = ft_substr(buffer, \
 			ft_strchr(buffer, '\n') - buffer + 1, \
 			ft_strlen(buffer));
-	if (!buffer)
+	if (!buffer || ft_strlen(buffer) == 0)
 		return (NULL);
 	free(tmp);
 	return (buffer);
