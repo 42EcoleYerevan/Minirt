@@ -6,7 +6,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdlib.h>
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 # include "./geometry.h"

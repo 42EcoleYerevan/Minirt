@@ -19,14 +19,9 @@ int main()
 	t_scene		*scene;
 
 	mlx = mlx_init();
-	sphere_center = new_vector(3, 2, -32);
-	sphere = new_sphere(sphere_center, 12/2);
-	cam_origin = new_vector(0, 0, 0);
-	cam_direction = new_vector(0, 0, -1);
-	camera = new_camera(cam_origin, cam_direction, 70);
-	scene = new_scene(camera, sphere);
-	scene->width = 800;
-	scene->height = 600;
+	sphere = new_sphere(new_vector(3, 2, -32), 12/2);
+	camera = new_camera(new_vector(0, 0, 0), new_vector(0, 0, -1), 70);
+	scene = new_scene(camera, 800, 600);
 	win = mlx_new_window(mlx, scene->width, scene->height, "miniRT");
 	ray_tracing(mlx, win, scene);
 	//free_scene(scene);

@@ -25,10 +25,9 @@ void	ray_tracing(void *mlx, void *win, t_scene *scene)
 			x_ray = x_angle * vplane->x_pixel;
 			ray = new_vector(x_ray, y_ray, -1);
 			vec_norm(ray);
-			if (sphere_inter(scene->cams, ray, scene->sphere))
-				color = 16777215;
-			else
-				color = 0;
+			color = sphere_inter(scene->cams, ray, scene->sphere);
+			if (color != 0)
+				color = 99777225;
 			mlx_pixel_put(mlx, win, mlx_x, mlx_y, color);
 			free(ray);
 			x_angle++;
