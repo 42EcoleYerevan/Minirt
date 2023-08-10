@@ -5,16 +5,16 @@ static int	ft_len_token(char *line);
 static int	ft_len_tokens(char *line);
 static char	**ft_split_line(char *line);
 
-int ft_parse_map(char **lines)
+int ft_parse_map(char **lines, t_scene *scene)
 {
 	int		i;
 	char	**tokens;
 
 	i = 0;
+	(void)scene;
 	while (lines[i])
 	{
 		tokens = ft_split_line(lines[i]);
-		ft_set_shapes(tokens);
 		i++;
 	}
 	return (0);

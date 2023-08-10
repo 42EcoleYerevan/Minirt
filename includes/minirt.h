@@ -14,18 +14,8 @@
 # define WIDTH 300
 # define HEIGHT 300
 
-typedef struct s_rt 
-{
-	void 		*mlx;
-	void 		*win;
-	void 		*img;
-	float		width;
-	float		height;
-	t_scene		*scene;
-}	t_rt;
-
 // parser
-int		ft_parser(char *filename, t_rt *rt);
+int		ft_parser(char *filename, t_scene *scene);
 
 // readline
 char	*ft_readline(int fd);
@@ -40,7 +30,7 @@ void	ft_print_2d_array(char **arr);
 char	**ft_tokenizer(char *path);
 
 // parser map
-int		ft_parse_map(char **lines, t_rt *rt);
+int ft_parse_map(char **lines, t_scene *scene);
 
 // parser shapes
 int	ft_set_shapes(char **tokens);
