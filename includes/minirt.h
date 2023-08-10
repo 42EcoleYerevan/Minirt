@@ -30,10 +30,10 @@ void	ft_print_2d_array(char **arr);
 char	**ft_tokenizer(char *path);
 
 // parser map
-int ft_parse_map(char **lines, t_scene *scene);
+int		ft_parse_map(char **lines, t_scene *scene);
 
 // parser shapes
-int	ft_set_shapes(char **tokens);
+int		ft_set_shape(char **tokens, t_scene *scene);
 
 // math
 void	ft_vec_mult(t_vec *vec, float mult);
