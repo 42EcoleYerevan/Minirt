@@ -28,7 +28,7 @@ typedef struct s_mat {
 } t_mat;
 
 // parser
-char	**ft_tokenizer(char *path);
+int ft_parser(char *filename);
 
 // readline
 char	*ft_readline(int fd);
@@ -37,5 +37,12 @@ char	*ft_readline(int fd);
 int		ft_arrlen(char **arr);
 void	ft_free_arr(char **arr);
 char	**ft_arrjoin(char **arr, char *str);
+void	ft_print_2d_array(char **arr);
+
+//parser tokenizer
+char **ft_tokenizer(char *path);
+
+// parser map
+int ft_parse_map(char **lines);
 
 #endif
