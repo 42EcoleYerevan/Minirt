@@ -1,15 +1,15 @@
 #include "minirt.h"
 
-t_cylinder	*new_cylinder(t_vec *center, float radius, float width, float height)
+t_cylinder *new_cylinder(t_vec *center, t_vec *direction, float radius, float height, t_color *color)
 {
-	t_cylinder	*new;
+	t_cylinder *cylinder;
 
-	new = malloc(sizeof(t_cylinder));
-	if (!new)
-		err_exit("err: memory allocating failed.\n");
-	new->center = center;
-	new->width = width;
-	new->height = height;
-	new->radius = radius;
-	return (new);
+	cylinder = malloc(sizeof(t_cylinder));
+	cylinder->center = center;
+	cylinder->direction = direction;
+	cylinder->radius = radius;
+	cylinder->height = height;
+	cylinder->color = color;
+	cylinder->next = NULL;
+	return (cylinder);
 }
