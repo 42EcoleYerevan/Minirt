@@ -14,7 +14,7 @@ int ft_parse_map(char **lines)
 	while (lines[i])
 	{
 		tokens = ft_split_line(lines[i]);
-		printf("%s\n", tokens[0]);
+		ft_set_shapes(tokens);
 		i++;
 	}
 	return (0);

@@ -1,5 +1,6 @@
 NAME=a.out
 HEADER_DIR=./includes
+HEADERS=$(wildcard $(HEADER_DIR)/*.h)
 SRC_DIR=./srcs
 SRCS=$(wildcard $(SRC_DIR)/*.c)
 SRCS+=$(wildcard $(SRC_DIR)/**/*.c)
@@ -19,7 +20,7 @@ LIBS_FLAG=-L $(LIBFT_DIR) -lft \
 
 all: $(NAME)
 
-$(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT_A) $(MLX_A)
+$(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT_A) $(MLX_A) $(HEADERS)
 	$(CC) $(CFLAGS) $(OBJS) -I $(HEADER_DIR) $(LIBS_FLAG) -o $(NAME)
 
 $(OBJS_DIR):

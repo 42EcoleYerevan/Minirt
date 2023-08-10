@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int ft_parser(char *filename)
+int ft_parser(char *filename, t_rt *rt)
 {
 	char **tokens;
 
