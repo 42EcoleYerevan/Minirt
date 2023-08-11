@@ -14,6 +14,16 @@
 # define WIDTH 300
 # define HEIGHT 300
 
+// validator
+int		ft_is_valid_float(char *str);
+int		ft_is_valid_ambient(char **tokens);
+int		ft_is_valid_num_of_cams(char **lines);
+int		ft_is_valid_color(char *str);
+int		ft_is_valid_vector(char *str);
+int		ft_is_valid_fov(char *str);
+int		ft_is_valid_direction(char *str);
+int		ft_is_valid_light(char **tokens);
+
 // parser
 int		ft_parser(char *filename, t_scene *scene);
 char	**ft_split_line(char *line);

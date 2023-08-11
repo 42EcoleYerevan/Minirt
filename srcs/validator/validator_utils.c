@@ -1,7 +1,6 @@
 #include "minirt.h"
 
-int ft_is_valid_str_float(char *str);
-int	ft_is_valid_float(char *str);
+static int ft_is_valid_str_float(char *str);
 
 float	ft_atof(char *str)
 {
@@ -37,12 +36,10 @@ int	ft_is_valid_float(char *str)
 	}
 	if (i > 1)
 		return (1);
-	while (*str)
-		str++;
 	return (0);
 }
 
-int ft_is_valid_str_float(char *str)
+static int ft_is_valid_str_float(char *str)
 {
 	int			i;
 	const char	*tmp = "1234567890.";
