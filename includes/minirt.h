@@ -16,6 +16,15 @@
 
 // parser
 int		ft_parser(char *filename, t_scene *scene);
+char	**ft_split_line(char *line);
+
+// parser utils
+float	ft_atof(char *str);
+int		ft_str_to_int(char *str);
+int		ft_len_after_dot(char *str);
+int		ft_len_before_dot(char *str);
+float	ft_str_to_int_part(char *str);
+float	ft_str_to_decimal_part(char *str);
 
 // readline
 char	*ft_readline(int fd);
