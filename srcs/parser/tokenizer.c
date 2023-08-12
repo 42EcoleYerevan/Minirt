@@ -63,13 +63,11 @@ static char	**ft_read_file(char *path)
 	int fd;
 	char *line;
 	char **strarr;
-	int i;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
 	strarr = NULL;
-	i = 0;
 	line = ft_readline(fd);
 	while (line)
 	{

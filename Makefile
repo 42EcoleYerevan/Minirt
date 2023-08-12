@@ -9,8 +9,10 @@ LIBFT_DIR=./libft
 LIBFT_A=$(LIBFT_DIR)/libft.a
 ifeq ($(shell uname), Linux)
 	MLX_DIR=./mlx_linux
+	MLX_MAKE=cd $(MLX_DIR) && ./configure
 else
 	MLX_DIR=./mlx_mac
+	MLX_MAKE=@make -C $(MLX_DIR)
 endif
 MLX_A=$(MLX_DIR)/libmlx.a
 CC=cc
@@ -45,10 +47,11 @@ $(LIBFT_A):
 	@make -C $(LIBFT_DIR) bonus
 
 $(MLX_A):
-	@make -C $(MLX_DIR)
+	$(MLX_MAKE)
 
 clean:
 	rm -rf $(OBJS_DIR)
+	cd $(MLX_DIR) && ./configure clean
 	# make -C $(MLX_DIR) clean
 	# make -C $(LIBFT_DIR) clean
 
