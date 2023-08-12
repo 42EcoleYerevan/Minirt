@@ -7,20 +7,33 @@ OBJS_DIR=./objs
 OBJS=$(SRCS:$(SRC_DIR)/%.c=$(OBJS_DIR)/%.o)
 LIBFT_DIR=./libft
 LIBFT_A=$(LIBFT_DIR)/libft.a
-MLX_DIR=./mlx_linux
+ifeq ($(shell uname), Linux)
+	MLX_DIR=./mlx_linux
+else
+	MLX_DIR=./mlx_mac
+endif
 MLX_A=$(MLX_DIR)/libmlx.a
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
 LIBS_FLAG=-L $(LIBFT_DIR) -lft \
-		  -L $(MLX_DIR) -lmlx \
-		  -framework OpenGL \
-		  -framework AppKit \
-		  # -g -fsanitize=address
+			-L $(MLX_DIR) -lmlx \
+			-I $(HEADER_DIR)
+ifeq ($(shell uname), Linux)
+	LIBS_FLAG+=-Imlx_linux \
+			   -lXext \
+			   -lX11 \
+			   -lm \
+			   -lz
+else
+	LIBS_FLAG+=-framework OpenGL \
+			   -framework AppKit
+endif
+LIBS_FLAG+= -g -fsanitize=address
 
 all: $(NAME)
 
 $(NAME): $(OBJS_DIR) $(OBJS) $(LIBFT_A) $(MLX_A)
-	$(CC) $(CFLAGS) $(OBJS) -I $(HEADER_DIR) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS_FLAG) -o $(NAME)
 
 $(OBJS_DIR):
 	$(shell mkdir -p $(dir $(OBJS)))

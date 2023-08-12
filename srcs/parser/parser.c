@@ -2,10 +2,13 @@
 
 int ft_parser(char *filename, t_scene *scene)
 {
-	char **tokens;
+	char **lines;
 
 	(void)scene;
-	tokens = ft_tokenizer(filename);
-	ft_parse_map(tokens, scene);
+	lines = ft_tokenizer(filename);
+	if (ft_validator(lines))
+		err_exit("Error: Invalid scene file\n");
+	if (ft_parse_map(lines, scene))
+		err_exit("Error: Parse error\n");
 	return (0);
 }

@@ -3,7 +3,7 @@
 static int	ft_len_spaces(char *line);
 static int	ft_len_token(char *line);
 static int	ft_len_tokens(char *line);
-static char	**ft_split_line(char *line);
+char		**ft_split_line(char *line);
 
 int ft_parse_map(char **lines, t_scene *scene)
 {
@@ -15,12 +15,17 @@ int ft_parse_map(char **lines, t_scene *scene)
 	while (lines[i])
 	{
 		tokens = ft_split_line(lines[i]);
+		if (!tokens)
+			return (1);
+		if (ft_set_shape(tokens, scene))
+			return (1);
+		ft_free_arr(tokens);
 		i++;
 	}
 	return (0);
 }
 
-static char	**ft_split_line(char *line)
+char	**ft_split_line(char *line)
 {
 	char	**tokens;
 	int		i;
@@ -33,6 +38,11 @@ static char	**ft_split_line(char *line)
 	{
 		line += ft_len_spaces(line);
 		tokens[i] = ft_substr(line, 0, ft_len_token(line));
+		if (!tokens[i])
+		{
+			ft_free_arr(tokens);
+			return (NULL);
+		}
 		i++;
 		line += ft_len_token(line);
 	}

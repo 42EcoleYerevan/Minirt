@@ -7,21 +7,31 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-# include "../minilibx/mlx.h"
+
+# ifdef __APPLE__
+# include "../mlx_mac/mlx.h"
+# elif __linux__
+# include "../mlx_linux/mlx.h"
+# endif
 # include "./geometry.h"
 
 # define WIDTH 300
 # define HEIGHT 300
 
 // validator
+int		ft_validator(char **lines);
 int		ft_is_valid_float(char *str);
 int		ft_is_valid_ambient(char **tokens);
+int		ft_is_valid_cam(char **lines);
 int		ft_is_valid_num_of_cams(char **lines);
 int		ft_is_valid_color(char *str);
 int		ft_is_valid_vector(char *str);
 int		ft_is_valid_fov(char *str);
 int		ft_is_valid_direction(char *str);
 int		ft_is_valid_light(char **tokens);
+int		ft_is_valid_sphere(char **tokens);
+int		ft_is_valid_plane(char **tokens);
+int		ft_is_valid_cylinder(char **tokens);
 
 // parser
 int		ft_parser(char *filename, t_scene *scene);
@@ -69,7 +79,7 @@ void	err_exit(char *str);
 t_vec		*new_vector(float x, float y, float z);
 t_sphere	*new_sphere(t_vec *vec, float radius);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
-t_scene		*new_scene(t_camera *cam, t_sphere *sphere);
+t_scene		*new_scene(t_camera *cam, float width, float height);
 t_vplane	*get_new_vplane(float width, float height, float fov);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
