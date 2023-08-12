@@ -56,12 +56,19 @@ typedef struct	s_camera
 	float	fov;
 }				t_camera;
 
+typedef struct	s_ambient
+{
+	int		color;
+	float	bright;
+}			t_ambient;
+
 typedef struct	s_scene
 {
 	t_camera	*cams;
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	t_ambient	*ambient;
 	float		width;
 	float		height;
 }				t_scene;

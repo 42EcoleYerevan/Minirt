@@ -1,5 +1,16 @@
 #include "minirt.h"
 
+float	compute_light(t_scene *scene, t_light *lights)
+{
+	float	bright;
+
+	i = 0;
+	i += scene->ambient->bright;
+	while (*lights)
+	{
+	}
+}
+
 void	ray_tracing(void *mlx, void *win, t_scene *scene)
 {
 	int			mlx_x;
@@ -11,6 +22,7 @@ void	ray_tracing(void *mlx, void *win, t_scene *scene)
 	float		x_ray;
 	t_vec		*ray;
 	t_vplane	*vplane;
+	float		bright;
 
 	vplane = get_new_vplane(scene->width, scene->height, scene->cams->fov);
 	mlx_y = 0;
@@ -27,7 +39,7 @@ void	ray_tracing(void *mlx, void *win, t_scene *scene)
 			vec_norm(ray);
 			color = sphere_inter(scene->cams, ray, scene->sphere);
 			if (color != 0)
-				color = 99777225;
+				color = get_color(255, 0, 0, compute_light(scene, );
 			mlx_pixel_put(mlx, win, mlx_x, mlx_y, color);
 			free(ray);
 			x_angle++;

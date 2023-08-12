@@ -76,6 +76,13 @@ float	vec_mult_dot(t_vec *vec1, t_vec *vec2);
 
 void	err_exit(char *str);
 
+// utils/color
+int		get_color(int red, int green, int blue, float bright);
+int		get_r(int color);
+int		get_g(int color);
+int		get_b(int color);
+
+
 t_vec		*new_vector(float x, float y, float z);
 t_sphere	*new_sphere(t_vec *vec, float radius);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
