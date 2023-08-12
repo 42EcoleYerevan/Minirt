@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_scene		*new_scene(t_camera *cam, t_sphere *sphere)
+t_scene		*new_scene(t_camera *cam, float width, float height)
 {
 	t_scene		*new;
 
@@ -8,8 +8,7 @@ t_scene		*new_scene(t_camera *cam, t_sphere *sphere)
 	if (!new)
 		err_exit("err: memory allocating failed.\n");
 	new->cams = cam;
-	new->sphere = sphere;
-	new->width = 0;
-	new->height = 0;
+	new->width = width;
+	new->height = height;
 	return (new);	
 }
