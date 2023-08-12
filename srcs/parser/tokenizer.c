@@ -5,12 +5,13 @@ static int	ft_is_empty_line(char *line);
 static void	ft_delete_empty_lines(char **lines);
 static void ft_shift_arr(char **lines, int i);
 
-char **ft_tokenizer(char *path)
+char **ft_read_scene(char *path)
 {
 	char **text;
 
 	text = ft_read_file(path);
 	ft_delete_empty_lines(text);
+	ft_trim_newline(text);
 	return text;
 }
 

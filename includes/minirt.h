@@ -44,6 +44,7 @@ int		ft_len_after_dot(char *str);
 int		ft_len_before_dot(char *str);
 float	ft_str_to_int_part(char *str);
 float	ft_str_to_decimal_part(char *str);
+void	ft_trim_newline(char **lines);
 
 // readline
 char	*ft_readline(int fd);
@@ -55,7 +56,7 @@ char	**ft_arrjoin(char **arr, char *str);
 void	ft_print_2d_array(char **arr);
 
 //parser tokenizer
-char	**ft_tokenizer(char *path);
+char	**ft_read_scene(char *path);
 
 // parser map
 int		ft_parse_map(char **lines, t_scene *scene);

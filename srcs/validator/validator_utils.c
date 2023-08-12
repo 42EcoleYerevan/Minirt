@@ -8,7 +8,10 @@ float	ft_atof(char *str)
 	int		sign;
 
 	if (ft_is_valid_float(str))
+	{
+		printf("%s\n", str);
 		err_exit("Error: invalid float\n");
+	}
 	if (!str)
 		return (0.0);
 	result = 0.0;
@@ -42,7 +45,7 @@ int	ft_is_valid_float(char *str)
 static int ft_is_valid_str_float(char *str)
 {
 	int			i;
-	const char	*tmp = "1234567890.";
+	const char	*tmp = "1234567890.-";
 
 	i = 0;
 	while (str[i])
