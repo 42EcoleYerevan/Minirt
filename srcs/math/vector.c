@@ -1,5 +1,21 @@
 #include "minirt.h"
 
+float	ft_vec_len(t_vec *vec)
+{
+	float	len;
+
+	len = sqrt(vec_mult_dot(vec, vec));
+	return (len);
+}
+
+void	ft_vec_add(t_vec *vec1, t_vec *vec2)
+{
+	vec1->x += vec2->x;
+	vec1->y += vec2->y;
+	vec1->z += vec2->z;
+	vec1->w += vec2->w;
+}
+
 void	ft_vec_mult(t_vec *vec, float mult)
 {
 	vec->x *= mult;

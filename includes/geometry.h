@@ -18,7 +18,7 @@ typedef struct s_color
 }	t_color;
 
 typedef struct	s_sphere {
-	t_color	*color;
+	int		color;
 	t_vec	*center;
 	float	radius;
 	struct	s_sphere	*next;
@@ -26,7 +26,7 @@ typedef struct	s_sphere {
 
 typedef struct s_plane
 {
-	t_color	*color;
+	int		color;
 	t_vec	*center;
 	t_vec	*direction;
 	struct	s_plane	*next;
@@ -34,7 +34,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_color	*color;
+	int		color;
 	t_vec	*center;
 	t_vec	*direction;
 	float	radius;
@@ -44,7 +44,7 @@ typedef struct s_cylinder
 
 typedef struct s_light
 {
-	t_color	*color;
+	int		color;
 	t_vec	*center;
 	float	brightness;
 }	t_light;
@@ -68,6 +68,7 @@ typedef struct	s_scene
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	t_light		*light;
 	t_ambient	*ambient;
 	float		width;
 	float		height;

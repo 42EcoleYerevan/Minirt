@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_vplane	*get_new_vplane(float width, float height, float fov)
+t_vplane	*new_vplane(float width, float height, float fov)
 {
 	t_vplane	*new;
 	float		aspect_ratio;
