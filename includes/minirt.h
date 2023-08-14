@@ -23,6 +23,8 @@ t_vec	*ft_get_vector_from_token(char *token);
 t_color	*ft_get_color_from_token(char *token);
 int		ft_set_ambient(char **tokens, t_scene *scene);
 int		ft_set_camera(char **tokens, t_scene *scene);
+int		ft_set_sphere(char **tokens, t_scene *scene);
+int		ft_set_light(char **tokens, t_scene *scene);
 
 // validator
 int		ft_validator(char **lines);
@@ -75,22 +77,32 @@ void	ft_vec_mult(t_vec *vec, float mult);
 void	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
 void	ft_vec_mult_mat(t_vec *vec, t_mat *mat);
 void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2);
-
+float	ft_vec_len(t_vec *vec);
 t_vec	*vec_substr(t_vec *vec1, t_vec *vec2);
-float	vec_len(t_vec *vec);
+void	ft_vec_add(t_vec *vec1, t_vec *vec2);
 void	vec_norm(t_vec *vec);
 float	vec_mult_dot(t_vec *vec1, t_vec *vec2);
 
 void	err_exit(char *str);
 
-t_color		*new_color(int r, int g, int b, float a);
-t_ambient	*new_ambient(t_color *color, float ratio);
-t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
+// utils/color
+int		get_color(int red, int green, int blue, float bright);
+int		get_r(int color);
+int		get_g(int color);
+int		get_b(int color);
+
+// geometry init
 t_vec		*new_vector(float x, float y, float z);
-t_sphere	*new_sphere(t_vec *vec, float radius);
+t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
+t_cylinder 	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
 t_scene		*new_scene(float width, float height);
-t_vplane	*get_new_vplane(float width, float height, float fov);
+t_light		*new_light(t_vec *center, float brightness, t_color *color);
+t_vplane	*new_vplane(float width, float height, float fov);
+t_ambient	*new_ambient(t_color *color, float brightness);
+t_color		*new_color(int r, int g, int b, float a);
+t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
+t_figure	*new_figure(void *data, int type);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
 void		ray_tracing(void *mlx, void *win, t_scene *scene);

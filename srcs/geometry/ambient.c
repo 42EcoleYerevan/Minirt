@@ -1,13 +1,13 @@
 #include "minirt.h"
 
-t_ambient	*new_ambient(t_color *color, float ratio)
+t_ambient	*new_ambient(t_color *color, float brightness)
 {
 	t_ambient	*ambient;
 
-	ambient = (t_ambient *)malloc(sizeof(t_ambient));
+	ambient = malloc(sizeof(t_ambient));
 	if (!ambient)
 		return (NULL);
 	ambient->color = color;
-	ambient->brightness = ratio;
+	ambient->brightness = brightness;
 	return (ambient);
 }

@@ -2,7 +2,10 @@
 
 void	err_exit(char *str)
 {
+    int val;
+
 	while(*str)
-		write(2, str++, 1);
-	exit(1);
+		val = write(2, str++, 1);
+    (void)val;
+    exit(1);
 }

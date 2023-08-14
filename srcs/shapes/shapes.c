@@ -19,13 +19,3 @@ int	ft_set_shape(char **tokens, t_scene *scene)
 	(void)scene;
 	return (0);
 }
-
-int ft_set_sphere(char **tokens, t_scene *scene)
-{
-	t_sphere *sphere;
-
-	sphere = NULL;
-	if (!tokens || !scene)
-		return (1);
-	return (0);
-}

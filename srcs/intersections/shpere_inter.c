@@ -2,27 +2,27 @@
 
 float	sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere)
 {
+	float	a;
 	float	b;
 	float	c;
 	float	discr;
-	float	dist_1;
-	float	dist_2;
+	float	t1;
+	float	t2;
 	t_vec	*cam_sphere;
 
-	dist_1 = 0;
-	dist_2 = 0;
+	a = vec_mult_dot(ray, ray);
 	cam_sphere = vec_substr(cam->origin, sphere->center);
-	b = 2 * (vec_mult_dot(cam_sphere, ray));
+	b = 2 * vec_mult_dot(cam_sphere, ray);
 	c = vec_mult_dot(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
-	discr = (b * b) - (4 * c);
-	free(cam_sphere);
+	discr = b * b - (4 * a * c);
 	if (discr < 0)
 		return (0);
-	dist_1 = ((b * (-1)) - sqrt(discr) / 2);
-	dist_2 = ((b * (-1)) + sqrt(discr) / 2);
-	(void)dist_2;
-	printf("dist1 = %f, dist2 = %f ", dist_1, dist_2);
-	if (dist_1 > 0)
-		return (dist_1);
-	return (0);
+	t1 = ((b * (-1)) - sqrt(discr) / (2 * a));
+	t2 = ((b * (-1)) + sqrt(discr) / (2 * a));
+	printf("a = %f, b = %f, c = %f, discr = %f, t1 = %f, t2 = %f",a, b, c, discr, t1, t2);
+	if (t1 <= 0 && t2 <= 0)
+		return (0);
+	if (t1 > t2)
+		return (t1);
+	return (t2);
 }

@@ -9,5 +9,9 @@ t_scene		*new_scene(float width, float height)
 		err_exit("err: memory allocating failed.\n");
 	new->width = width;
 	new->height = height;
+	new->cams = NULL;
+	new->ambient = NULL;
+	new->light = NULL;
+	new->figure = NULL;
 	return (new);	
 }

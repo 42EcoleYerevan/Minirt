@@ -2,7 +2,6 @@
 
 int	ft_set_ambient(char **tokens, t_scene *scene)
 {
-	t_ambient *ambient;
 	t_color		*color;
 
 	if (!tokens || !scene)

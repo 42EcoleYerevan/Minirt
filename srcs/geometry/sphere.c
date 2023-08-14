@@ -1,14 +1,17 @@
 #include "minirt.h"
 
-t_sphere	*new_sphere(t_vec *vec, t_color *color, float radius)
+t_figure	*new_sphere(t_vec *vec, float radius, t_color *color)
 {
-	t_sphere	*new;
+	t_figure	*new;
+	t_sphere	*sphere;
 
-	new = malloc(sizeof(t_sphere));
-	if (!new)
+	sphere = malloc(sizeof(t_sphere));
+	if (!sphere)
 		err_exit("err: memory allocating failed.\n");
-	new->center = vec;
-	new->radius = radius;
-	new->next = NULL;
+	sphere->center = vec;
+	sphere->radius = radius;
+	sphere->color = color;
+	sphere->next = NULL;
+	new = new_figure(sphere, SPHERE);
 	return (new);
 }
