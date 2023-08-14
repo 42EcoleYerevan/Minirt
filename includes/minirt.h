@@ -18,6 +18,12 @@
 # define WIDTH 300
 # define HEIGHT 300
 
+//shapes
+t_vec	*ft_get_vector_from_token(char *token);
+t_color	*ft_get_color_from_token(char *token);
+int		ft_set_ambient(char **tokens, t_scene *scene);
+int		ft_set_camera(char **tokens, t_scene *scene);
+
 // validator
 int		ft_validator(char **lines);
 int		ft_is_valid_float(char *str);
