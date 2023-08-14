@@ -44,6 +44,7 @@ int		ft_len_after_dot(char *str);
 int		ft_len_before_dot(char *str);
 float	ft_str_to_int_part(char *str);
 float	ft_str_to_decimal_part(char *str);
+void	ft_trim_newline(char **lines);
 
 // readline
 char	*ft_readline(int fd);
@@ -55,7 +56,7 @@ char	**ft_arrjoin(char **arr, char *str);
 void	ft_print_2d_array(char **arr);
 
 //parser tokenizer
-char	**ft_tokenizer(char *path);
+char	**ft_read_scene(char *path);
 
 // parser map
 int		ft_parse_map(char **lines, t_scene *scene);
@@ -86,10 +87,12 @@ int		get_b(int color);
 t_vec		*new_vector(float x, float y, float z);
 t_sphere	*new_sphere(t_vec *vec, float radius);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
-t_scene		*new_scene(t_ambient *abt, t_camera *cam, float wdth, float hgth);
+t_scene		*new_scene(float width, float height);
 t_light		*new_light(int color, t_vec *center, float brightness);
 t_vplane	*new_vplane(float width, float height, float fov);
-t_ambient	*new_ambient(int color, float bright);
+t_ambient	*new_ambient(t_color *color, float ratio);
+t_color		*new_color(int r, int g, int b, float a);
+t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
 void		ray_tracing(void *mlx, void *win, t_scene *scene);

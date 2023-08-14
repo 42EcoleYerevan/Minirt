@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_plane	*new_plane(t_vec *center, t_vec *direction, t_color *color)
+t_plane	*new_plane(t_vec *center, t_vec *direction, int color)
 {
 	t_plane	*plane;
 

@@ -1,6 +1,13 @@
 #ifndef GEOMETRY_H
 # define GEOMETRY_H
 
+enum e_figure
+{
+	SPHERE,
+	PLANE,
+	CYLINDER
+};
+
 typedef struct s_vec
 {
 	float	x;
@@ -9,20 +16,34 @@ typedef struct s_vec
 	float	w;
 }	t_vec;
 
+typedef struct s_mat
+{
+	t_vec	x;
+	t_vec	y;
+	t_vec	z;
+	t_vec	w;
+} t_mat;
+
 typedef struct s_color
 {
 	int	r;
 	int	g;
 	int	b;
-	int	a;
+	float	a;
 }	t_color;
+
+typedef struct s_ambient
+{
+	t_color	*color;
+	float	brightness;
+}	t_ambient;
 
 typedef struct	s_sphere {
 	int		color;
 	t_vec	*center;
 	float	radius;
 	struct	s_sphere	*next;
-}				t_sphere;
+}	t_sphere;
 
 typedef struct s_plane
 {
@@ -56,20 +77,35 @@ typedef struct	s_camera
 	float	fov;
 }				t_camera;
 
+<<<<<<< HEAD
 typedef struct	s_ambient
 {
 	int		color;
 	float	bright;
 }			t_ambient;
+=======
+typedef struct s_figure
+{
+	int				type;
+	void			*figure;
+	struct s_figure	*next;
+}	t_figure;
+>>>>>>> bdd215f8697b125e936f9aa6923b8fbe091ade81
 
 typedef struct	s_scene
 {
+	t_figure	*figure;
 	t_camera	*cams;
+<<<<<<< HEAD
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
 	t_light		*light;
 	t_ambient	*ambient;
+=======
+	t_ambient	*ambient;
+	t_light		*light;
+>>>>>>> bdd215f8697b125e936f9aa6923b8fbe091ade81
 	float		width;
 	float		height;
 }				t_scene;
@@ -81,13 +117,5 @@ typedef struct	s_vplane
 	float	x_pixel;
 	float	y_pixel;
 }				t_vplane;
-
-typedef struct s_mat
-{
-	t_vec	x;
-	t_vec	y;
-	t_vec	z;
-	t_vec	w;
-} t_mat;
 
 #endif

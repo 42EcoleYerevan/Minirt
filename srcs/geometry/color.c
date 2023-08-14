@@ -1,0 +1,15 @@
+#include "minirt.h"
+
+t_color	*new_color(int r, int g, int b, float a)
+{
+	t_color	*color;
+
+	color = malloc(sizeof(t_color));
+	if (!color)
+		return (NULL);
+	color->r = r;
+	color->g = g;
+	color->b = b;
+	color->a = a;
+	return (color);
+}
