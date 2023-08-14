@@ -77,10 +77,13 @@ float	vec_mult_dot(t_vec *vec1, t_vec *vec2);
 
 void	err_exit(char *str);
 
+t_color		*new_color(int r, int g, int b, float a);
+t_ambient	*new_ambient(t_color *color, float ratio);
+t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_vec		*new_vector(float x, float y, float z);
 t_sphere	*new_sphere(t_vec *vec, float radius);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
-t_scene		*new_scene(t_camera *cam, float width, float height);
+t_scene		*new_scene(float width, float height);
 t_vplane	*get_new_vplane(float width, float height, float fov);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);

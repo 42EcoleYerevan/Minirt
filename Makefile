@@ -53,14 +53,10 @@ $(MLX_A):
 
 clean:
 	rm -rf $(OBJS_DIR)
-	$(MLX_CLEAN)
-	# make -C $(MLX_DIR) clean
-	# make -C $(LIBFT_DIR) clean
+	# $(MLX_CLEAN)
 
 fclean: clean
 	rm -f $(NAME)
-	# rm -f $(MLX_A)
-	# rm -f $(LIBFT_A)
 
 re: fclean all
 
