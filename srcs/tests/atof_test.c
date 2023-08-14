@@ -51,8 +51,8 @@ void ft_atof_test_run(void)
 	ft_atof_test("", 0.0);
 }
 
-int main()
-{
-	ft_atof_test_run();
-	return (0);
-}
+// int main()
+// {
+// 	ft_atof_test_run();
+// 	return (0);
+// }

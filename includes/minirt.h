@@ -88,7 +88,7 @@ t_vec		*new_vector(float x, float y, float z);
 t_sphere	*new_sphere(t_vec *vec, float radius);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
 t_scene		*new_scene(float width, float height);
-t_light		*new_light(int color, t_vec *center, float brightness);
+t_light		*new_light(t_color *color, t_vec *center, float brightness);
 t_vplane	*new_vplane(float width, float height, float fov);
 t_ambient	*new_ambient(t_color *color, float ratio);
 t_color		*new_color(int r, int g, int b, float a);

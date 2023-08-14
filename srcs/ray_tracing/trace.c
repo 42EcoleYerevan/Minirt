@@ -14,7 +14,7 @@ float	compute_light(t_scene *scene, int dist, t_light *lights, t_vec *ray)
 	printf("x2 = %f, y2 = %f, z2 = %f\n", point->x, point->y, point->z);
 	ft_vec_add(point, scene->cams->origin);
 	printf("x3 = %f, y3 = %f, z3 = %f\n", point->x, point->y, point->z);
-	bright += scene->ambient->bright;
+	bright += scene->ambient->brightness;
 	l = vec_substr(lights->center, point);
 	vec_norm(point);
 	printf("x4 = %f, y4 = %f, z4 = %f ", point->x, point->y, point->z);
@@ -53,7 +53,7 @@ void	ray_tracing(void *mlx, void *win, t_scene *scene)
 			ray = new_vector(x_ray, y_ray, -1);
 			color = 0;
 			vec_norm(ray);
-			dist = sphere_inter(scene->cams, ray, scene->sphere);
+			dist = sphere_inter(scene->cams, ray, scene->figure->figure);
 			if (dist != 0)
 				color = get_color(255, 0, 0, compute_light(scene, dist, scene->light, ray));
 			mlx_pixel_put(mlx, win, mlx_x, mlx_y, color);

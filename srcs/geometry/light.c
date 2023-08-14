@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_light	*new_light(int color, t_vec *center, float brightness)
+t_light	*new_light(t_color *color, t_vec *center, float brightness)
 {
 	t_light	*new;
 
@@ -13,7 +13,7 @@ t_light	*new_light(int color, t_vec *center, float brightness)
 	return (new);
 }
 
-t_ambient	*new_ambient(int color, float bright)
+t_ambient	*new_ambient(t_color *color, float ratio)
 {
 	t_ambient	*new;
 
@@ -21,6 +21,6 @@ t_ambient	*new_ambient(int color, float bright)
 	if (!new)
 		err_exit("err: memory allocating failed.\n");
 	new->color = color;
-	new->bright = bright;
+	new->brightness = ratio;
 	return (new);
 }
