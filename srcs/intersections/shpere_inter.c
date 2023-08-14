@@ -19,7 +19,7 @@ float	sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere)
 		return (0);
 	t1 = ((b * (-1)) - sqrt(discr) / (2 * a));
 	t2 = ((b * (-1)) + sqrt(discr) / (2 * a));
-	printf("a = %f, b = %f, c = %f, discr = %f, t1 = %f, t2 = %f",a, b, c, discr, t1, t2);
+	// printf("a = %f, b = %f, c = %f, discr = %f, t1 = %f, t2 = %f",a, b, c, discr, t1, t2);
 	if (t1 <= 0 && t2 <= 0)
 		return (0);
 	if (t1 > t2)

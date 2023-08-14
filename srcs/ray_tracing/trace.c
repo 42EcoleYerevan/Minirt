@@ -5,24 +5,35 @@ float	compute_light(t_scene *scene, int dist, t_light *lights, t_vec *ray)
 	float	bright;
 	t_vec	*point;
 	t_vec	*l;
+	t_vec	*n;
+	t_sphere *sphere;
 	float	dot;
 
+	sphere = (t_sphere *)scene->figure->data;
 	bright = 0;
 	point = new_vector(ray->x, ray->y, ray->z);
-	printf("\nx1 = %f, y1 = %f, z1 = %f\n", point->x, point->y, point->z);
+	// printf("\nx1 = %f, y1 = %f, z1 = %f\n", point->x, point->y, point->z);
 	ft_vec_mult(point, dist);
-	printf("x2 = %f, y2 = %f, z2 = %f\n", point->x, point->y, point->z);
+	// printf("x2 = %f, y2 = %f, z2 = %f\n", point->x, point->y, point->z);
 	ft_vec_add(point, scene->cams->origin);
-	printf("x3 = %f, y3 = %f, z3 = %f\n", point->x, point->y, point->z);
+	// printf("x3 = %f, y3 = %f, z3 = %f\n", point->x, point->y, point->z);
+	n = new_vector(point->x, point->y,point->x);
+	n = vec_substr(n, sphere->center);
+	vec_norm(point);
 	bright += scene->ambient->brightness;
 	l = vec_substr(lights->center, point);
-	vec_norm(point);
-	printf("x4 = %f, y4 = %f, z4 = %f ", point->x, point->y, point->z);
-	dot = vec_mult_dot(point, l);
-	printf("dot = %f ", dot);
+	vec_norm(n);
+	// vec_norm(l);
+	// printf("x4 = %f, y4 = %f, z4 = %f \n", point->x, point->y, point->z);
+	// printf("x4 = %f, y4 = %f, z4 = %f ", l->x, l->y, l->z);
+	
+	dot = vec_mult_dot(n, l);
 	if (dot > 0)
-		bright += (lights->brightness * dot) / (ft_vec_len(point) * ft_vec_len(l));
-	printf("brigth = %f\n", bright);
+	{
+		printf("dot = %f\n", dot);
+		bright += (lights->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l));
+	}
+	// printf("brigth = %f\n", bright);
 	return (bright);
 }
 

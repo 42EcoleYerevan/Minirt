@@ -64,7 +64,6 @@ t_vec	*vec_substr(t_vec *vec1, t_vec *vec2)
 {
 	t_vec	*res;
 
-	printf("x = %f y = %f z = %f\n", vec1->x,vec1->y, vec1->z);
 	res = new_vector(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
 	return (res);
 }
