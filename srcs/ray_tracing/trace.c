@@ -17,7 +17,7 @@ float	compute_light(t_scene *scene, int dist, t_light *lights, t_vec *ray)
 	// printf("x2 = %f, y2 = %f, z2 = %f\n", point->x, point->y, point->z);
 	ft_vec_add(point, scene->cams->origin);
 	// printf("x3 = %f, y3 = %f, z3 = %f\n", point->x, point->y, point->z);
-	n = new_vector(point->x, point->y,point->x);
+	n = new_vector(point->x, point->y,point->z);
 	n = vec_substr(n, sphere->center);
 	vec_norm(point);
 	bright += scene->ambient->brightness;
