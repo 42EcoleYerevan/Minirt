@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_sphere	*new_sphere(t_vec *vec, float radius)
+t_sphere	*new_sphere(t_vec *vec, t_color *color, float radius)
 {
 	t_sphere	*new;
 
