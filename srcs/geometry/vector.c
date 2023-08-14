@@ -10,15 +10,6 @@ t_vec	*new_vector(float x, float y, float z)
 	new->x = x;
 	new->y = y;
 	new->z = z;
+	new->w = 1;
 	return (new);
-}
-
-void	vec_norm(t_vec *vec)
-{
-	float	len;
-
-	len = ft_vec_len(vec);
-	vec->x /= len;
-	vec->y /= len;
-	vec->z /= len;
 }
