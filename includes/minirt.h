@@ -25,6 +25,11 @@ int		ft_set_ambient(char **tokens, t_scene *scene);
 int		ft_set_camera(char **tokens, t_scene *scene);
 int		ft_set_sphere(char **tokens, t_scene *scene);
 int		ft_set_light(char **tokens, t_scene *scene);
+int		ft_set_plane(char **tokens, t_scene *scene);
+int		ft_set_cylinder(char **tokens, t_scene *scene);
+
+//shapes
+void	ft_add_figure(t_scene *scene, t_figure *figure);
 
 // validator
 int		ft_validator(char **lines);
@@ -101,7 +106,7 @@ t_light		*new_light(t_vec *center, float brightness, t_color *color);
 t_vplane	*new_vplane(float width, float height, float fov);
 t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
-t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
+t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);

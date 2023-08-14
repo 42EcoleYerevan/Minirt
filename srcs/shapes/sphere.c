@@ -15,6 +15,6 @@ int ft_set_sphere(char **tokens, t_scene *scene)
 	sphere = new_sphere(center, radius, color);
 	if (!sphere)
 		return (1);
-	scene->figure = sphere;
+	ft_add_figure(scene, sphere);
 	return (0);
 }

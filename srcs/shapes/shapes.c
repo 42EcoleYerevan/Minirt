@@ -11,11 +11,10 @@ int	ft_set_shape(char **tokens, t_scene *scene)
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
 		return (ft_set_sphere(tokens, scene));
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		printf("plane\n");
+		return (ft_set_plane(tokens, scene));
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		printf("cylinder\n");
+		return (ft_set_cylinder(tokens, scene));
 	else
 		return (1);
-	(void)scene;
 	return (0);
 }
