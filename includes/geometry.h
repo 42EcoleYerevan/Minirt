@@ -39,9 +39,9 @@ typedef struct s_ambient
 }				t_ambient;
 
 typedef struct	s_sphere {
-	int				color;
 	t_vec			*center;
 	float			radius;
+	t_color			*color;
 	struct s_sphere	*next;
 }				t_sphere;
 
@@ -55,7 +55,7 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	int		color;
+	t_color	*color;
 	t_vec	*center;
 	t_vec	*direction;
 	float	radius;
@@ -80,7 +80,7 @@ typedef struct	s_camera
 typedef struct s_figure
 {
 	int				type;
-	void			*figure;
+	void			*data;
 	struct s_figure	*next;
 }	t_figure;
 

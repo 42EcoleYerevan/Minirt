@@ -53,7 +53,7 @@ void	ray_tracing(void *mlx, void *win, t_scene *scene)
 			ray = new_vector(x_ray, y_ray, -1);
 			color = 0;
 			vec_norm(ray);
-			dist = sphere_inter(scene->cams, ray, scene->figure->figure);
+			dist = sphere_inter(scene->cams, ray, scene->figure->data);
 			if (dist != 0)
 				color = get_color(255, 0, 0, compute_light(scene, dist, scene->light, ray));
 			mlx_pixel_put(mlx, win, mlx_x, mlx_y, color);
