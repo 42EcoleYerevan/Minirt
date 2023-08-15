@@ -2,6 +2,7 @@
 
 int	ft_set_shape(char **tokens, t_scene *scene)
 {
+	puts(tokens[0]);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
 		return (ft_set_ambient(tokens, scene));
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)

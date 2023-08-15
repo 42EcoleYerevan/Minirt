@@ -1,4 +1,6 @@
+#include "geometry.h"
 #include "minirt.h"
+
 
 int main()
 {
@@ -20,5 +22,6 @@ int main()
     /* mlx_loop(mlx); */
 	t_scene *scene = new_scene(800, 600);
 	ft_parser("scenes/leha.rt", scene);
+	ft_print_scene(scene);
     return (0);
 }

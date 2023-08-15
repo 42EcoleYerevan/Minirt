@@ -1,4 +1,3 @@
-#include "geometry.h"
 #include "minirt.h"
 
 t_color	*ft_get_color_from_token(char *token)

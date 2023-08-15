@@ -68,6 +68,7 @@ typedef struct s_light
 	t_color	*color;
 	t_vec	*center;
 	float	brightness;
+	struct	s_light	*next;
 }	t_light;
 
 typedef struct	s_camera

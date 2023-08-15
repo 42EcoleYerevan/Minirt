@@ -11,7 +11,6 @@ int ft_parse_map(char **lines, t_scene *scene)
 	char	**tokens;
 
 	i = 0;
-	(void)scene;
 	while (lines[i])
 	{
 		tokens = ft_split_line(lines[i]);
@@ -55,7 +54,7 @@ static int	ft_len_spaces(char *line)
 	int i;
 
 	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
+	while (line[i] == ' ' || line[i] == '\t' || line[i] == '\n')
 		i++;
 	return (i);
 }

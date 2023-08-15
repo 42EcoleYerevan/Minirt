@@ -108,8 +108,13 @@ t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
 t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
-
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
 void		ray_tracing(void *mlx, void *win, t_scene *scene);
+
+// print
+void	ft_print_scene(t_scene *scene);
+void	ft_print_sphere(t_sphere *sphere);
+void	ft_print_plane(t_plane *plane);
+void	ft_print_cylinder(t_cylinder *cylinder);
 
 #endif
