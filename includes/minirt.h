@@ -97,6 +97,8 @@ t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
 
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
-void		ray_tracing(void *mlx, void *win, t_scene *scene);
+void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
+int			ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere);
+float		calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph);
 
 #endif

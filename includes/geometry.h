@@ -84,6 +84,14 @@ typedef struct s_figure
 	struct s_figure	*next;
 }	t_figure;
 
+typedef struct	s_vplane
+{
+	float	width;
+	float	height;
+	float	x_pixel;
+	float	y_pixel;
+}				t_vplane;
+
 typedef struct	s_scene
 {
 	t_figure	*figure;
@@ -93,13 +101,5 @@ typedef struct	s_scene
 	float		width;
 	float		height;
 }				t_scene;
-
-typedef struct	s_vplane
-{
-	float	width;
-	float	height;
-	float	x_pixel;
-	float	y_pixel;
-}				t_vplane;
 
 #endif

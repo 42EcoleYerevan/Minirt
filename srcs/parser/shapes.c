@@ -24,6 +24,7 @@ int ft_set_sphere(char **tokens, t_scene *scene)
 {
 	t_sphere *sphere;
 
+	(void)sphere;
 	sphere = NULL;
 	if (!tokens || !scene)
 		return (1);
