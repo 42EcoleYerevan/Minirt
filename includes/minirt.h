@@ -79,7 +79,7 @@ int		ft_set_shape(char **tokens, t_scene *scene);
 
 // math
 void	ft_vec_mult(t_vec *vec, float mult);
-void	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
+float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
 void	ft_vec_mult_mat(t_vec *vec, t_mat *mat);
 void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2);
 float	ft_vec_len(t_vec *vec);

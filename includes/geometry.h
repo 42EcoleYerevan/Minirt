@@ -18,10 +18,10 @@ typedef struct	s_vec
 
 typedef struct s_mat
 {
-	t_vec	x;
-	t_vec	y;
-	t_vec	z;
-	t_vec	w;
+	t_vec	*x;
+	t_vec	*y;
+	t_vec	*z;
+	t_vec	*w;
 }				t_mat;
 
 typedef struct s_color
@@ -75,6 +75,10 @@ typedef struct	s_camera
 {
 	t_vec	*origin;
 	t_vec	*direction;
+	t_vec	*up;
+	t_vec	*right;
+	float	near;
+	float	far;
 	float	fov;
 }				t_camera;
 
