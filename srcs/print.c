@@ -1,9 +1,12 @@
 #include "minirt.h"
 
+void	ft_print_light(t_light *light);
+
 void	ft_print_scene(t_scene *scene)
 {
 	t_figure *figure;
 
+	ft_print_light(scene->light);
 	figure = scene->figure;
 	while (figure)
 	{
@@ -15,6 +18,14 @@ void	ft_print_scene(t_scene *scene)
 			ft_print_cylinder(figure->data);
 		figure = figure->next;
 	}
+}
+
+void	ft_print_light(t_light *light)
+{
+	printf("Light:\n");
+	printf("Center: %f %f %f\n", light->center->x, light->center->y, light->center->z);
+	printf("Brightness: %f\n", light->brightness);
+	printf("Color: %d %d %d\n\n", light->color->r, light->color->g, light->color->b);
 }
 
 void ft_print_sphere(t_sphere *sphere)

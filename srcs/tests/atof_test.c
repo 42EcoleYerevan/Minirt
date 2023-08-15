@@ -13,6 +13,7 @@ void ft_ko(void)
 void	ft_atof_test(char *str, float expect)
 {
 	float num = ft_atof(str);
+	printf("string: %s ", str);
 	if (num > expect - 0.001 && num < expect + 0.001)
 		ft_ok();
 	else
@@ -49,10 +50,14 @@ void ft_atof_test_run(void)
 	ft_atof_test("999999.999999", 999999.999999);
 	ft_atof_test("0.0", 0.0);
 	ft_atof_test("", 0.0);
+	ft_atof_test("-1", -1.0);
+	ft_atof_test("-1.0", -1.0);
+	ft_atof_test("-10.0", -10.0);
+	ft_atof_test("-100.0", -100.0);
 }
 
-// int main()
-// {
-// 	ft_atof_test_run();
-// 	return (0);
-// }
+/* int main() */
+/* { */
+/* 	ft_atof_test_run(); */
+/*  	return (0); */
+/* } */
