@@ -68,6 +68,10 @@ int	ft_is_valid_direction(char *str)
 
 	status = 0;
 	fnumbers = ft_split(str, ',');
+	puts(str);
+	printf("%f ", ft_atof(fnumbers[0]));
+	printf("%f ", ft_atof(fnumbers[1]));
+	printf("%f\n", ft_atof(fnumbers[2]));
 	if (!fnumbers)
 		status = 1;
 	if (ft_arrlen(fnumbers) != 3)

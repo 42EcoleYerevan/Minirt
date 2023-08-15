@@ -17,7 +17,10 @@ float	ft_atof(char *str)
 	result = 0.0;
 	sign = 1;
 	if (*str == '-')
+	{
 		sign = -1;
+		str++;
+	}
 	result = ft_str_to_int_part(str);
 	result += ft_str_to_decimal_part(str);
 	return (result * sign);
