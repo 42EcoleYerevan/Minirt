@@ -32,7 +32,7 @@ else
 	LIBS_FLAG+=-framework OpenGL \
 			   -framework AppKit
 endif
-LIBS_FLAG+= -g -fsanitize=address
+# LIBS_FLAG+= -g -fsanitize=address
 
 all: $(NAME)
 

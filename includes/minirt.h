@@ -18,6 +18,19 @@
 # define WIDTH 300
 # define HEIGHT 300
 
+//shapes
+t_vec	*ft_get_vector_from_token(char *token);
+t_color	*ft_get_color_from_token(char *token);
+int		ft_set_ambient(char **tokens, t_scene *scene);
+int		ft_set_camera(char **tokens, t_scene *scene);
+int		ft_set_sphere(char **tokens, t_scene *scene);
+int		ft_set_light(char **tokens, t_scene *scene);
+int		ft_set_plane(char **tokens, t_scene *scene);
+int		ft_set_cylinder(char **tokens, t_scene *scene);
+
+//shapes
+void	ft_add_figure(t_scene *scene, t_figure *figure);
+
 // validator
 int		ft_validator(char **lines);
 int		ft_is_valid_float(char *str);
@@ -66,7 +79,7 @@ int		ft_set_shape(char **tokens, t_scene *scene);
 
 // math
 void	ft_vec_mult(t_vec *vec, float mult);
-void	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
+float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
 void	ft_vec_mult_mat(t_vec *vec, t_mat *mat);
 void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2);
 float	ft_vec_len(t_vec *vec);
@@ -89,16 +102,21 @@ t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
 t_cylinder 	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
 t_scene		*new_scene(float width, float height);
-t_light		*new_light(t_color *color, t_vec *center, float brightness);
+t_light		*new_light(t_vec *center, float brightness, t_color *color);
 t_vplane	*new_vplane(float width, float height, float fov);
-t_ambient	*new_ambient(t_color *color, float ratio);
+t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
-t_plane		*new_plane(t_vec *center, t_vec *direction, t_color *color);
+t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
-
 float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
 void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
 int			ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere);
 float		calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph);
+
+// print
+void	ft_print_scene(t_scene *scene);
+void	ft_print_sphere(t_sphere *sphere);
+void	ft_print_plane(t_plane *plane);
+void	ft_print_cylinder(t_cylinder *cylinder);
 
 #endif
