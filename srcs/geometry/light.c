@@ -10,6 +10,7 @@ t_light	*new_light(t_color *color, t_vec *center, float brightness)
 	new->color = color;
 	new->center = center;
 	new->brightness = brightness;
+	new->next = NULL;
 	return (new);
 }
 

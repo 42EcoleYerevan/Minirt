@@ -2,7 +2,20 @@
 
 int	get_color(int red, int green, int blue, float bright)
 {
-	return ((int)(red * bright) << 16 | (int)(green * bright) << 8 | (int)(blue * bright));
+	int	r;
+	int	g;
+	int	b;
+
+	r = red * bright;
+	g = green * bright;
+	b = blue * bright;
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
+	return (r << 16 | g << 8 | b);
 }
 
 int	get_r(int color)

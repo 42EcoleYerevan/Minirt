@@ -8,19 +8,25 @@ float	calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sp
 	t_vec	*n;
 	float	dot;
 
-	bright = 0;
 	point = new_vector(ray->x * t, ray->y * t, ray->z * t);
 	ft_vec_add(point, scene->cams->origin);
 	n = new_vector(point->x, point->y,point->z);
 	n = vec_substr(n, sph->center);
 	vec_norm(n);
-	bright += scene->ambient->brightness;
-	l = vec_substr(light->center, point);
-	dot = vec_mult_dot(n, l);
-	if (dot > 0)
-		bright += (light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l));
+	bright = scene->ambient->brightness;
+	while (light)
+	{
+		l = vec_substr(light->center, point);
+		dot = vec_mult_dot(n, l);
+		if (dot > 0)
+			bright += (light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l));
+		free(l);
+		light = light->next;
+	}
 	free(point);
 	free(n);
+	if (bright > 1)
+		return (1);
 	return (bright);
 }
 
