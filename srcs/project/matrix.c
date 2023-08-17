@@ -7,6 +7,7 @@ t_mat	*get_project_matrix()
 	matrix = (t_mat *)malloc(sizeof(t_mat));
 	if (!matrix)
 		return (NULL);
+	(void)scene;
 	matrix->x = new_vector(0, 0, 0);
 	return (matrix);
 }

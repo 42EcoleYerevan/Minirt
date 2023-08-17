@@ -8,10 +8,7 @@ float	ft_atof(char *str)
 	int		sign;
 
 	if (ft_is_valid_float(str))
-	{
-		printf("%s\n", str);
 		err_exit("Error: invalid float\n");
-	}
 	if (!str)
 		return (0.0);
 	result = 0.0;
