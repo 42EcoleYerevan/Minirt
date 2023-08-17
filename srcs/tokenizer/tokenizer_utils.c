@@ -9,7 +9,7 @@ void ft_trim_newline(char **lines)
 	while (lines[n])
 	{
 		tmp = lines[n]; 
-		lines[n] = ft_strtrim(lines[n], "\n");
+		lines[n] = ft_strtrim(lines[n], "\n\r\t\v\f");
 		free(tmp);
 		n++;
 	}

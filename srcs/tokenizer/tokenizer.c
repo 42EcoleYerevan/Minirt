@@ -10,8 +10,8 @@ char **ft_read_scene(char *path)
 	char **text;
 
 	text = ft_read_file(path);
-	ft_delete_empty_lines(text);
 	ft_trim_newline(text);
+	ft_delete_empty_lines(text);
 	return text;
 }
 
