@@ -99,7 +99,7 @@ int		get_b(int color);
 // geometry init
 t_vec		*new_vector(float x, float y, float z);
 t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
-t_cylinder 	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
+t_figure	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
 t_scene		*new_scene(float width, float height);
 t_light		*new_light(t_vec *center, float brightness, t_color *color);
