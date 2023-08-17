@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_mat	*get_project_matrix(t_scene *scene)
+t_mat	*get_project_matrix()
 {
 	t_mat	*matrix;
 
