@@ -28,10 +28,7 @@ float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2)
 {
 	float	res;
 
-	res = vec1->x * vec2->x + \
-		  vec1->y * vec2->y + \
-		  vec1->z * vec2->z + \
-		  vec1->w * vec2->w;
+	res = vec1->x * vec2->x + vec1->y * vec2->y + vec1->z * vec2->z + vec1->w * vec2->w;
 	return (res);
 }
 

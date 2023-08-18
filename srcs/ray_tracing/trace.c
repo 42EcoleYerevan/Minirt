@@ -1,12 +1,43 @@
 #include "minirt.h"
 
+float	cacl_diffuse(t_vec *l, t_vec *n, t_light *light)
+{
+	float	dot;
+
+	dot = vec_mult_dot(n, l);
+	if (dot > 0)
+		return ((light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l)));
+	return (0);
+}
+
+float	calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s)
+{
+	t_vec	*v;
+	t_vec	*r;
+	float	r_dot_v;
+	float	res;
+
+	res = 0;
+	v = new_vector(2 * n->x, 2 * n->y, 2 * n->z);
+	ft_vec_mult(v, ft_vec_mult_vec(n, l));
+	r = vec_substr(v, l);
+	free(v);
+	v = new_vector(-(d->x), -(d->y), -(d->z));
+	r_dot_v = ft_vec_mult_vec(r, v);
+	if (r_dot_v > 0)
+		res = light->brightness * powf(r_dot_v / (ft_vec_len(r) * ft_vec_len(v)), s);
+	free(v);
+	free(r);
+	return (res);
+}
+
 float	calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph)
 {
 	float	bright;
 	t_vec	*point;
 	t_vec	*l;
 	t_vec	*n;
-	float	dot;
+
 
 	point = new_vector(ray->x * t, ray->y * t, ray->z * t);
 	ft_vec_add(point, scene->cams->origin);
@@ -17,9 +48,9 @@ float	calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sp
 	while (light)
 	{
 		l = vec_substr(light->center, point);
-		dot = vec_mult_dot(n, l);
-		if (dot > 0)
-			bright += (light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l));
+		bright += cacl_diffuse(l, n, light);
+		if (sph->specular > 0)
+			bright += calc_specular(ray, l, n, light, sph->specular);
 		free(l);
 		light = light->next;
 	}
@@ -37,7 +68,7 @@ int	ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere)
 	float		min_t;
 	t_sphere	*obj;
 
-	color = 0;
+	color = get_color(255,255,255,1);
 	min_t = 0;
 	obj = NULL;
 	while (sphere)
