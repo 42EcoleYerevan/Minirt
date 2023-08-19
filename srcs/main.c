@@ -9,7 +9,7 @@ int main()
     t_scene		*scene;
 
 	scene = new_scene(800, 600);
-	ft_parser("scenes/leha.rt", scene);
+	ft_parser("scenes/new.rt", scene);
 	ft_print_scene(scene);
 
     mlx = mlx_init();

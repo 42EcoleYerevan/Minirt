@@ -31,60 +31,74 @@ float	calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s)
 	return (res);
 }
 
-float	calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph)
+float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph)
 {
-	float	bright;
-	t_vec	*point;
-	t_vec	*l;
-	t_vec	*n;
-
-
-	point = new_vector(ray->x * t, ray->y * t, ray->z * t);
-	ft_vec_add(point, scene->cams->origin);
-	n = new_vector(point->x, point->y,point->z);
+	float		bright;
+	t_vec		*l;
+	t_vec		*n;
+	t_light		*light;
+	// t_sphere	*shadow = NULL;
+	
+	light = scene->light;
+	n = new_vector(p->x, p->y,p->z);
 	n = vec_substr(n, sph->center);
 	vec_norm(n);
 	bright = scene->ambient->brightness;
 	while (light)
 	{
-		l = vec_substr(light->center, point);
+		l = vec_substr(light->center, p);
+		// closest_inter(scene->figure, &shadow, p, l, 0.001);
+		// if (shadow != NULL)
+		// {
+		// 	scene->light = scene->light->next;
+		// 	free(l);
+		// 	continue ;
+		// }
 		bright += cacl_diffuse(l, n, light);
 		if (sph->specular > 0)
 			bright += calc_specular(ray, l, n, light, sph->specular);
 		free(l);
 		light = light->next;
 	}
-	free(point);
+	free(p);
 	free(n);
 	if (bright > 1)
 		return (1);
 	return (bright);
 }
 
-int	ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere)
+float	closest_inter(t_figure *sphere, t_sphere **obj, t_vec *o, t_vec *d, float min_val)
 {
-	int			color;
-	float		t;
-	float		min_t;
-	t_sphere	*obj;
+	float	min_t;
+	float	t;
 
-	color = get_color(255,255,255,1);
+	(void)min_val;
 	min_t = 0;
-	obj = NULL;
-	while (sphere)
+	while (sphere != NULL)
 	{
-		t = sphere_inter(scene->cams, ray, (t_sphere *)sphere->data);
-		if ((t < min_t || min_t == 0)&& t != 0)
+		t = sphere_inter(o, d, (t_sphere *)sphere->data);
+		if ((t < min_t || min_t == 0) && t != 0)
 			min_t = t;
 		if (t == min_t)
-			obj = (t_sphere *)sphere->data;
+			*obj = (t_sphere *)sphere->data;
 		sphere = sphere->next;
 	}
-	if (min_t > 0)
-		color = get_color(obj->color->r,obj->color->g, obj->color->b,
-						  calc_light(scene, min_t, scene->light, ray, obj));
-	free(ray);
-	return (color);
+	return (min_t);
+}
+
+int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *sphere)
+{
+	float		min_t;
+	t_sphere	*obj;
+	t_vec		*p;
+
+	obj = NULL;
+	min_t = closest_inter(sphere, &obj, o, d, 0);
+	if (min_t <= 0)
+		return (get_color(255,255,255,1));
+	p = new_vector(d->x * min_t, d->y * min_t, d->z * min_t);
+	ft_vec_add(p, o);
+	return (get_color(obj->color->r,obj->color->g, obj->color->b, calc_light(p, d, scene, obj)));
 }
 
 void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)
@@ -103,7 +117,8 @@ void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)
 		while(x_angle <= scene->width / 2)
 		{
 			ray = new_vector(x_angle * vplane->x_pixel, y_angle * vplane->y_pixel, -1);
-			mlx_pixel_put(mlx, win, mlx_x, mlx_y, ray_trace(ray, scene, scene->figure));
+			mlx_pixel_put(mlx, win, mlx_x, mlx_y, ray_trace(ray, scene->cams->origin, scene, scene->figure));
+			free(ray);
 			x_angle++;
 			mlx_x++;
 		}

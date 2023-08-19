@@ -11,7 +11,7 @@ t_figure	*new_sphere(t_vec *vec, float radius, t_color *color)
 	sphere->center = vec;
 	sphere->radius = radius;
 	sphere->color = color;
-	sphere->specular = 0;
+	sphere->specular = 100;
 	figure = new_figure(sphere, SPHERE);
 	figure->next = NULL;
 	return (figure);

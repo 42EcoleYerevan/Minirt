@@ -108,10 +108,12 @@ t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
 t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
-float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
+float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
-int			ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere);
-float		calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph);
+int			ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *sphere);
+float		closest_inter(t_figure *sphere, t_sphere **obj, t_vec *o, t_vec *d, float min_t);
+float		calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph);
+
 
 // print
 void	ft_print_scene(t_scene *scene);
