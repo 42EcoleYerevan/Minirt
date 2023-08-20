@@ -83,10 +83,10 @@ float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
 void	ft_vec_mult_mat(t_vec *vec, t_mat *mat);
 void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2);
 float	ft_vec_len(t_vec *vec);
-t_vec	*vec_substr(t_vec *vec1, t_vec *vec2);
+t_vec	*ft_vec_substr(t_vec *vec1, t_vec *vec2);
 void	ft_vec_add(t_vec *vec1, t_vec *vec2);
-void	vec_norm(t_vec *vec);
-float	vec_mult_dot(t_vec *vec1, t_vec *vec2);
+void	ft_vec_norm(t_vec *vec);
+float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2);
 
 void	err_exit(char *str);
 
@@ -109,7 +109,7 @@ t_vec		*new_4vector(float x, float y, float z, float w);
 t_vec		*new_zero_vec(void);
 t_vec		*new_vector(float x, float y, float z);
 t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
-t_cylinder 	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
+t_figure	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
 t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
 t_scene		*new_scene(float width, float height);
 t_light		*new_light(t_vec *center, float brightness, t_color *color);
@@ -118,10 +118,15 @@ t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
 t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
-float		sphere_inter(t_camera *cam, t_vec *ray, t_sphere *sphere);
+
+// ray tracing
+float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
-int			ray_trace(t_vec *ray, t_scene *scene, t_figure *sphere);
-float		calc_light(t_scene *scene, int t, t_light *light, t_vec *ray, t_sphere *sph);
+int			ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *sphere);
+float		closest_inter(t_figure *sphere, t_sphere **obj, t_vec *o, t_vec *d, float min_t);
+float		calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph);
+float		calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s);
+float		cacl_diffuse(t_vec *l, t_vec *n, t_light *light);
 
 // print
 void	ft_print_scene(t_scene *scene);

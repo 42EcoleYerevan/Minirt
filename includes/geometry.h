@@ -42,7 +42,7 @@ typedef struct	s_sphere {
 	t_vec			*center;
 	float			radius;
 	t_color			*color;
-	struct s_sphere	*next;
+	int				specular;
 }				t_sphere;
 
 typedef struct s_plane
@@ -50,7 +50,7 @@ typedef struct s_plane
 	t_color	*color;
 	t_vec	*center;
 	t_vec	*direction;
-	struct	s_plane	*next;
+	int		specular;
 }				t_plane;
 
 typedef struct s_cylinder
@@ -60,7 +60,7 @@ typedef struct s_cylinder
 	t_vec	*direction;
 	float	radius;
 	float	height;
-	struct	s_cylinder	*next;
+	int		specular;
 }			t_cylinder;
 
 typedef struct s_light

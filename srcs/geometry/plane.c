@@ -8,11 +8,12 @@ t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color)
 
 	plane = (t_plane *)malloc(sizeof(t_plane));
 	if (!plane)
-		return (NULL);
+		err_exit("err: memory allocating failed.\n");
 	plane->center = center;
 	plane->direction = direction;
 	plane->color = color;
-	plane->next = NULL;
+	plane->specular = 0;
 	figure = new_figure(plane, PLANE);
+	figure->next = NULL;
 	return (figure);
 }
