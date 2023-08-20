@@ -10,10 +10,10 @@ float	sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere)
 	float	t2;
 	t_vec	*cam_sphere;
 
-	a = vec_mult_dot(ray, ray);
-	cam_sphere = vec_substr(o, sphere->center);
-	b = 2 * vec_mult_dot(cam_sphere, ray);
-	c = vec_mult_dot(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
+	a = ft_vec_mult_dot(ray, ray);
+	cam_sphere = ft_vec_substr(o, sphere->center);
+	b = 2 * ft_vec_mult_dot(cam_sphere, ray);
+	c = ft_vec_mult_dot(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
 	discr = b * b - (4 * a * c);
 	if (discr < 0)
 		return (0);
