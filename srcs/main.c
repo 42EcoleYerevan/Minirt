@@ -16,6 +16,7 @@ int main()
     camera = new_camera(new_vector(0, 0, 0), new_vector(0, 0, -1), 70);
     win = mlx_new_window(mlx, scene->width, scene->height, "miniRT");
     scene_render(mlx, win, scene, 0, 0);
+	mlx_key_hook(win, key_hook, scene);
     mlx_loop(mlx);
     return (0);
 }

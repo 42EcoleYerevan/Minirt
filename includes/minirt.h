@@ -97,6 +97,16 @@ int		get_g(int color);
 int		get_b(int color);
 
 // geometry init
+t_mat		*ft_translate_matrix(t_vec *vec);
+t_mat		*new_zero_mat(void);
+t_mat		*new_mat(t_vec *x, t_vec *y, t_vec *z, t_vec *w);
+t_vec 		*ft_vec_subtract(t_vec *vec1, t_vec *vec2);
+t_mat 		*ft_subtract_matrix(t_mat *matrix1, t_mat *matrix2);
+t_vec		*ft_vec_normalize(t_vec *vec);
+t_vec		*ft_vec_cross(t_vec *vec1, t_vec *vec2);
+t_vec		*ft_vec_dup(t_vec *vec);
+t_vec		*new_4vector(float x, float y, float z, float w);
+t_vec		*new_zero_vec(void);
 t_vec		*new_vector(float x, float y, float z);
 t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
 t_cylinder 	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
@@ -118,5 +128,8 @@ void	ft_print_scene(t_scene *scene);
 void	ft_print_sphere(t_sphere *sphere);
 void	ft_print_plane(t_plane *plane);
 void	ft_print_cylinder(t_cylinder *cylinder);
+
+// controller
+int key_hook(int keycode, t_scene *scene);
 
 #endif

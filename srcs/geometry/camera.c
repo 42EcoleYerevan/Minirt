@@ -14,5 +14,7 @@ t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov)
 	new->up = new_vector(0, 1, 0);
 	new->right = new_vector(1, 0, 0);
 	new->fov = fov;
+	new->near = 0.1;
+	new->far = 1000;
 	return	(new);
 }

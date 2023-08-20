@@ -99,6 +99,9 @@ typedef struct	s_vplane
 
 typedef struct	s_scene
 {
+	void		*mlx;
+	void		*win;
+	void		*img;
 	t_figure	*figure;
 	t_camera	*cams;
 	t_ambient	*ambient;
