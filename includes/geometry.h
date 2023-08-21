@@ -14,15 +14,7 @@ typedef struct	s_vec
 	float	y;
 	float	z;
 	float	w;
-}				t_vec;
-
-typedef struct s_mat
-{
-	t_vec	*x;
-	t_vec	*y;
-	t_vec	*z;
-	t_vec	*w;
-}				t_mat;
+}	t_vec;
 
 typedef struct s_color
 {
@@ -30,20 +22,20 @@ typedef struct s_color
 	int		g;
 	int		b;
 	float	a;
-}				t_color;
+}	t_color;
 
 typedef struct s_ambient
 {
 	t_color		*color;
 	float		brightness;
-}				t_ambient;
+}	t_ambient;
 
 typedef struct	s_sphere {
+	t_color			*color;
 	t_vec			*center;
 	float			radius;
-	t_color			*color;
 	int				specular;
-}				t_sphere;
+}	t_sphere;
 
 typedef struct s_plane
 {
@@ -51,7 +43,7 @@ typedef struct s_plane
 	t_vec	*center;
 	t_vec	*direction;
 	int		specular;
-}				t_plane;
+}	t_plane;
 
 typedef struct s_cylinder
 {
@@ -61,7 +53,7 @@ typedef struct s_cylinder
 	float	radius;
 	float	height;
 	int		specular;
-}			t_cylinder;
+}	t_cylinder;
 
 typedef struct s_light
 {
@@ -75,12 +67,11 @@ typedef struct	s_camera
 {
 	t_vec	*origin;
 	t_vec	*direction;
-	t_vec	*up;
 	t_vec	*right;
 	float	near;
 	float	far;
 	float	fov;
-}				t_camera;
+}	t_camera;
 
 typedef struct s_figure
 {
@@ -95,7 +86,7 @@ typedef struct	s_vplane
 	float	height;
 	float	x_pixel;
 	float	y_pixel;
-}				t_vplane;
+}	t_vplane;
 
 typedef struct	s_scene
 {
@@ -108,6 +99,10 @@ typedef struct	s_scene
 	t_light		*light;
 	float		width;
 	float		height;
-}				t_scene;
+	int 		button;
+	float 		x_angle;
+	float 		y_angle;
+	float 		z_angle;
+}	t_scene;
 
 #endif

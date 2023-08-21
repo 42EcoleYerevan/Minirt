@@ -80,13 +80,12 @@ int		ft_set_shape(char **tokens, t_scene *scene);
 // math
 void	ft_vec_mult(t_vec *vec, float mult);
 float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
-void	ft_vec_mult_mat(t_vec *vec, t_mat *mat);
-void	ft_mat_mult_mat(t_mat *mat1, t_mat *mat2);
 float	ft_vec_len(t_vec *vec);
 t_vec	*ft_vec_substr(t_vec *vec1, t_vec *vec2);
 void	ft_vec_add(t_vec *vec1, t_vec *vec2);
 void	ft_vec_norm(t_vec *vec);
 float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2);
+t_vec	*ft_vec_cross(t_vec *vec1, t_vec *vec2);
 
 void	err_exit(char *str);
 
@@ -97,11 +96,7 @@ int		get_g(int color);
 int		get_b(int color);
 
 // geometry init
-t_mat		*ft_translate_matrix(t_vec *vec);
-t_mat		*new_zero_mat(void);
-t_mat		*new_mat(t_vec *x, t_vec *y, t_vec *z, t_vec *w);
 t_vec 		*ft_vec_subtract(t_vec *vec1, t_vec *vec2);
-t_mat 		*ft_subtract_matrix(t_mat *matrix1, t_mat *matrix2);
 t_vec		*ft_vec_normalize(t_vec *vec);
 t_vec		*ft_vec_cross(t_vec *vec1, t_vec *vec2);
 t_vec		*ft_vec_dup(t_vec *vec);
@@ -118,6 +113,9 @@ t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
 t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
+void		ft_init_hooks(t_scene *scene);
+float		*ft_identity_matrix(void);
+float		*ft_new_zero_matrix(void);
 
 // ray tracing
 float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
@@ -136,5 +134,32 @@ void	ft_print_cylinder(t_cylinder *cylinder);
 
 // controller
 int key_hook(int keycode, t_scene *scene);
+int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene);
+int ft_mouseup_hook(int keycode, int x, int y, t_scene *scene);
+int ft_mousemove_hook(int x, int y, t_scene *scene);
+
+// render
+int render(void *scene);
+
+// matrix_act
+float	*ft_mat_mult(float *mat1, float *mat2);
+float	*ft_new_zero_matrix(void);
+void	ft_vec_mult_mat(t_vec *vec, float *mat);
+t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat);
+
+// projection
+float	*ft_view_matrix(t_camera *camera);
+void	ft_move_scene_to_camera(t_scene *scene, t_camera *camera);
+
+// rotation
+float	*ft_xrotation_matrix(float alfa);
+float	*ft_yrotation_matrix(float alfa);
+float	*ft_zrotation_matrix(float alfa);
+
+// camera rotation
+void	ft_camera_rotate(t_scene *scene, float *matrix);
+void	ft_camera_xrotate(t_scene *scene, float angle);
+void	ft_camera_yrotate(t_scene *scene, float angle);
+void	ft_camera_zrotate(t_scene *scene, float angle);
 
 #endif
