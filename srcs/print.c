@@ -68,8 +68,8 @@ void ft_print_sphere(t_sphere *sphere)
 void ft_print_plane(t_plane *plane)
 {
 	printf("Plane:\n");
-	printf("Center: %f %f %f\n", plane->center->x, plane->center->y, plane->center->z);
-	printf("Direction: %f %f %f\n", plane->direction->x, plane->direction->y, plane->direction->z);
+	printf("Point: %f %f %f\n", plane->point->x, plane->point->y, plane->point->z);
+	printf("Normal: %f %f %f\n", plane->normal->x, plane->normal->y, plane->normal->z);
 	printf("Color: %d %d %d\n\n", plane->color->r, plane->color->g, plane->color->b);
 }
 

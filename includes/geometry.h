@@ -48,8 +48,8 @@ typedef struct	s_sphere {
 typedef struct s_plane
 {
 	t_color	*color;
-	t_vec	*center;
-	t_vec	*direction;
+	t_vec	*point;
+	t_vec	*normal;
 	int		specular;
 }				t_plane;
 
