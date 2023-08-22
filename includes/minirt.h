@@ -120,9 +120,9 @@ float		cacl_diffuse(t_vec *l, t_vec *n, t_light *light);
 
 // print
 void	ft_print_scene(t_scene *scene);
-void	ft_print_sphere(t_sphere *sphere);
-void	ft_print_plane(t_plane *plane);
-void	ft_print_cylinder(t_cylinder *cylinder);
+void	ft_print_sphere(t_figure *figure);
+void	ft_print_plane(t_figure *figure);
+void	ft_print_cylinder(t_figure *figure);
 
 float	plane_inter(t_vec *o, t_vec *d, t_plane *plane);
 
