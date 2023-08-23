@@ -4,7 +4,7 @@ float	ft_vec_len(t_vec *vec)
 {
 	float	len;
 
-	len = sqrt(ft_vec_mult_dot(vec, vec));
+	len = sqrt(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
 	return (len);
 }
 
@@ -32,6 +32,30 @@ float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2)
 	return (res);
 }
 
+t_vec	*ft_vec_substr(t_vec *vec1, t_vec *vec2)
+{
+	t_vec	*res;
+
+	res = new_vector(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
+	return (res);
+}
+
+float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2)
+{
+	float	res;
+
+	res = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
+	return (res);
+}
+void	ft_vec_norm(t_vec *vec)
+{
+	float	len;
+
+	len = ft_vec_len(vec);
+	vec->x /= len;
+	vec->y /= len;
+	vec->z /= len;
+}
 /* void	ft_vec_mult_mat(t_vec *vec, t_mat *mat) */
 /* { */
 /* 	t_vec tmp; */
@@ -60,27 +84,4 @@ float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2)
 /* 	(void)tmp; */
 /* } */
 
-t_vec	*ft_vec_substr(t_vec *vec1, t_vec *vec2)
-{
-	t_vec	*res;
 
-	res = new_vector(vec1->x - vec2->x, vec1->y - vec2->y, vec1->z - vec2->z);
-	return (res);
-}
-
-float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2)
-{
-	float	res;
-
-	res = ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
-	return (res);
-}
-void	ft_vec_norm(t_vec *vec)
-{
-	float	len;
-
-	len = ft_vec_len(vec);
-	vec->x /= len;
-	vec->y /= len;
-	vec->z /= len;
-}
