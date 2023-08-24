@@ -14,16 +14,6 @@ void ft_print_matrix(float *matrix)
 	}
 }
 
-int render(void *scene)
-{
-	t_scene *tscene;
-
-	tscene = (t_scene *)scene;
-	ft_move_scene_to_camera(tscene, tscene->cams);
-    scene_render(tscene->mlx, tscene->win, scene, 0, 0);
-	return (0);
-}
-
 int main()
 {
     void		*mlx;
@@ -31,9 +21,9 @@ int main()
     t_scene		*scene;
 
 	scene = new_scene(WIDTH, HEIGHT);
-	scene->x_angle = 0;
-	scene->y_angle = 0;
-	scene->z_angle = 0;
+	scene->x_angle = 0.1;
+	scene->y_angle = 0.1;
+	scene->z_angle = 0.1;
 	ft_parser("scenes/new.rt", scene);
 	ft_print_scene(scene);
 

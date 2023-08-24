@@ -1,42 +1,42 @@
 #include "minirt.h"
 
-void	ft_camera_rotate(t_scene *scene, float *matrix)
+void	ft_camera_rotate(t_camera *camera, float *matrix)
 {
-	ft_vec_mult_mat(scene->cams->direction, matrix);
-	ft_vec_mult_mat(scene->cams->right, matrix);
-	ft_vec_norm(scene->cams->direction);
-	ft_vec_norm(scene->cams->right);
+	ft_vec_mult_mat(camera->direction, matrix);
+	ft_vec_mult_mat(camera->right, matrix);
+	ft_vec_norm(camera->direction);
+	ft_vec_norm(camera->right);
 }
 
-void	ft_camera_xrotate(t_scene *scene, float angle)
+void	ft_camera_xrotate(t_camera *camera, float angle)
 {
 	float *xrotate;
 
 	xrotate = ft_xrotation_matrix(angle);
 	if (xrotate == NULL)
 		return ;
-	ft_camera_rotate(scene, xrotate);
+	ft_camera_rotate(camera, xrotate);
 	free(xrotate);
 }
 
-void ft_camera_yrotate(t_scene *scene, float angle)
+void ft_camera_yrotate(t_camera *camera, float angle)
 {
 	float *yrotate;
 
 	yrotate = ft_yrotation_matrix(angle);
 	if (yrotate == NULL)
 		return ;
-	ft_camera_rotate(scene, yrotate);
+	ft_camera_rotate(camera, yrotate);
 	free(yrotate);
 }
 
-void ft_camera_zrotate(t_scene *scene, float angle)
+void ft_camera_zrotate(t_camera *camera, float angle)
 {
 	float *zrotate;
 
 	zrotate = ft_zrotation_matrix(angle);
 	if (zrotate == NULL)
 		return ;
-	ft_camera_rotate(scene, zrotate);
+	ft_camera_rotate(camera, zrotate);
 	free(zrotate);
 }

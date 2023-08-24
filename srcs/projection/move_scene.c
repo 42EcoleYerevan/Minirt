@@ -1,39 +1,34 @@
 #include "minirt.h"
 
-static void	ft_move_sphere(t_sphere *sphere, float *view_matrix);
-static void	ft_move_plane(t_plane *plane, float *view_matrix);
-static void	ft_move_cylinder(t_cylinder *cylinder, float *view_matrix);
-
-void ft_move_scene_to_camera(t_scene *scene, t_camera *camera)
+void	ft_xrotate_scene(t_scene *scene, float angle)
 {
-	t_figure	*figure;
-	float		*view_matrix;
+	float	*matrix;
 
-	figure = scene->figure;
-	view_matrix = ft_view_matrix(camera);
-	while (figure)
-	{
-		if (figure->type == SPHERE)
-			ft_move_sphere(figure->data, view_matrix);
-		else if (figure->type == PLANE)
-			ft_move_plane(figure->data, view_matrix);
-		else if (figure->type == CYLINDER)
-			ft_move_cylinder(figure->data, view_matrix);
-		figure = figure->next;
-	}
+	matrix = ft_xrotation_matrix(angle);
+	if (!matrix)
+		return ;
+	ft_rotate_objects(scene, matrix);
+	free(matrix);
 }
 
-static void	ft_move_sphere(t_sphere *sphere, float *view_matrix)
+void	ft_yrotate_scene(t_scene *scene, float angle)
 {
-	ft_vec_mult_mat(sphere->center, view_matrix);
+	float	*matrix;
+
+	matrix = ft_yrotation_matrix(angle);
+	if (!matrix)
+		return ;
+	ft_rotate_objects(scene, matrix);
+	free(matrix);
 }
 
-static void	ft_move_plane(t_plane *plane, float *view_matrix)
+void	ft_zrotate_scene(t_scene *scene, float angle)
 {
-	ft_vec_mult_mat(plane->center, view_matrix);
-}
+	float	*matrix;
 
-static void	ft_move_cylinder(t_cylinder *cylinder, float *view_matrix)
-{
-	ft_vec_mult_mat(cylinder->center, view_matrix);
+	matrix = ft_zrotation_matrix(angle);
+	if (!matrix)
+		return ;
+	ft_rotate_objects(scene, matrix);
+	free(matrix);
 }

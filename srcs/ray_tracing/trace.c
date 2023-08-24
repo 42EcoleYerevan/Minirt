@@ -37,7 +37,7 @@ float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph)
 	t_vec		*l;
 	t_vec		*n;
 	t_light		*light;
-    t_sphere	*shadow = NULL;
+    t_figure	*shadow = NULL;
 	
 	light = scene->light;
 	n = new_vector(p->x, p->y,p->z);
@@ -67,42 +67,45 @@ float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph)
 	return (bright);
 }
 
-float	closest_inter(t_figure *sphere, t_sphere **obj, t_vec *o, t_vec *d, float min_val)
+float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float min_val)
 {
 	float	min_t;
 	float	t;
 
-	(void)min_val;
 	min_t = 2000000;
-	while (sphere)
+	while (figure)
 	{
-		t = sphere_inter(o, d, (t_sphere *)sphere->data);
-//        if ((t < min_t || min_t == min_val) && t > 0)
+		if (figure->type == SPHERE)
+			t = sphere_inter(o, d, (t_sphere *)figure->data);
+		else if (figure->type == PLANE)
+			t = plane_inter(o, d, (t_plane *)figure->data);
 		if (t > min_val && t < min_t)
         {
             min_t = t;
-            *obj = (t_sphere *)sphere->data;
+            *obj = figure;
         }
-		sphere = sphere->next;
+		figure = figure->next;
 	}
 	if (min_t == 2000000)
 		return (0);
 	return (min_t);
 }
 
-int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *sphere)
+int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure)
 {
 	float		min_t;
-	t_sphere	*obj;
+	t_figure	*obj;
 	t_vec		*p;
 
 	obj = NULL;
-	min_t = closest_inter(sphere, &obj, o, d, 0);
+	(void)scene;
+	min_t = closest_inter(figure, &obj, o, d, 0);
 	if (min_t <= 0)
 		return (0);
 	p = new_vector(d->x * min_t, d->y * min_t, d->z * min_t);
 	ft_vec_add(p, o);
-	return (get_color(obj->color->r,obj->color->g, obj->color->b, calc_light(p, d, scene, obj)));
+	// return (get_color(obj->color->r,obj->color->g, obj->color->b, calc_light(p, d, scene, obj)));
+	return (get_color(obj->color->r,obj->color->g, obj->color->b, 1));
 }
 
 void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)

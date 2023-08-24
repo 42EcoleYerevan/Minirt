@@ -10,9 +10,9 @@ t_figure	*new_sphere(t_vec *vec, float radius, t_color *color)
 		err_exit("err: memory allocating failed.\n");
 	sphere->center = vec;
 	sphere->radius = radius;
-	sphere->color = color;
 	sphere->specular = 100;
 	figure = new_figure(sphere, SPHERE);
+	figure->color = color;
 	figure->next = NULL;
 	return (figure);
 }

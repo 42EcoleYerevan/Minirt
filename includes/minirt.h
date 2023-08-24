@@ -121,16 +121,19 @@ float		*ft_new_zero_matrix(void);
 float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
 int			ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *sphere);
-float		closest_inter(t_figure *sphere, t_sphere **obj, t_vec *o, t_vec *d, float min_t);
+float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float min_val);
 float		calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_sphere *sph);
 float		calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s);
 float		cacl_diffuse(t_vec *l, t_vec *n, t_light *light);
 
 // print
 void	ft_print_scene(t_scene *scene);
-void	ft_print_sphere(t_sphere *sphere);
-void	ft_print_plane(t_plane *plane);
-void	ft_print_cylinder(t_cylinder *cylinder);
+void	ft_print_sphere(t_figure *figure);
+void	ft_print_plane(t_figure *figure);
+void	ft_print_cylinder(t_figure *figure);
+void	ft_print_vec(t_vec *vec);
+
+float	plane_inter(t_vec *o, t_vec *d, t_plane *plane);
 
 // controller
 int key_hook(int keycode, t_scene *scene);
@@ -155,11 +158,18 @@ void	ft_move_scene_to_camera(t_scene *scene, t_camera *camera);
 float	*ft_xrotation_matrix(float alfa);
 float	*ft_yrotation_matrix(float alfa);
 float	*ft_zrotation_matrix(float alfa);
+void	ft_rotate_objects(t_scene *scene, float *matrix);
+void	ft_xrotate_scene(t_scene *scene, float angle);
+void	ft_yrotate_scene(t_scene *scene, float angle);
+void	ft_zrotate_scene(t_scene *scene, float angle);
 
 // camera rotation
-void	ft_camera_rotate(t_scene *scene, float *matrix);
-void	ft_camera_xrotate(t_scene *scene, float angle);
-void	ft_camera_yrotate(t_scene *scene, float angle);
-void	ft_camera_zrotate(t_scene *scene, float angle);
+void	ft_camera_rotate(t_camera *camera, float *matrix);
+void	ft_camera_xrotate(t_camera *camera, float angle);
+void	ft_camera_yrotate(t_camera *camera, float angle);
+void	ft_camera_zrotate(t_camera *camera, float angle);
+
+// render 
+int render(void *scene);
 
 #endif
