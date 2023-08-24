@@ -4,7 +4,7 @@ float	ft_vec_len(t_vec *vec)
 {
 	float	len;
 
-	len = sqrt(ft_vec_mult_dot(vec, vec));
+	len = sqrt(vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
 	return (len);
 }
 

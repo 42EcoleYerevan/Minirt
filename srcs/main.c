@@ -21,9 +21,6 @@ int main()
     t_scene		*scene;
 
 	scene = new_scene(WIDTH, HEIGHT);
-	scene->x_angle = 0.1;
-	scene->y_angle = 0.1;
-	scene->z_angle = 0.1;
 	ft_parser("scenes/new.rt", scene);
 	ft_print_scene(scene);
 

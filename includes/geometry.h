@@ -101,6 +101,9 @@ typedef struct	s_scene
 	float 		x_angle;
 	float 		y_angle;
 	float 		z_angle;
+	float		xmove;
+	float		ymove;
+	float		zmove;
 }	t_scene;
 
 #endif
