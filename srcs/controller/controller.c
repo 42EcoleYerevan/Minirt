@@ -27,6 +27,10 @@ void	ft_move_keyhook(int keycode, t_scene *scene)
 		ft_zmove_scene(scene, -scene->zmove);
 	else if (keycode == 124)
 		ft_xmove_scene(scene, -scene->xmove);
+	else if (keycode == 6)
+		ft_ymove_scene(scene, -scene->ymove);
+	else if (keycode == 7)
+		ft_ymove_scene(scene, scene->ymove);
 }
 
 int key_hook(int keycode, t_scene *scene)
