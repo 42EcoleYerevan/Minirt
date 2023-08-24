@@ -11,6 +11,10 @@ void ft_rotate_keyhook(int keycode, t_scene *scene)
 		ft_xrotate_scene(scene, -scene->x_angle);
 	else if (keycode == 2)
 		ft_yrotate_scene(scene, -scene->y_angle);
+	else if (keycode == 12)
+		ft_zrotate_scene(scene, scene->z_angle);
+	else if (keycode == 14)
+		ft_zrotate_scene(scene, -scene->z_angle);
 }
 
 void	ft_move_keyhook(int keycode, t_scene *scene)
@@ -18,11 +22,11 @@ void	ft_move_keyhook(int keycode, t_scene *scene)
 	if (keycode == 126)
 		ft_zmove_scene(scene, scene->zmove);
 	else if (keycode == 123)
-		ft_xmove_scene(scene, -scene->xmove);
+		ft_xmove_scene(scene, scene->xmove);
 	else if (keycode == 125)
 		ft_zmove_scene(scene, -scene->zmove);
 	else if (keycode == 124)
-		ft_xmove_scene(scene, scene->xmove);
+		ft_xmove_scene(scene, -scene->xmove);
 }
 
 int key_hook(int keycode, t_scene *scene)

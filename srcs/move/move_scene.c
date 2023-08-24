@@ -37,6 +37,6 @@ static void	ft_move_lights(t_light *light, t_vec *vec)
 	while (light)
 	{
 		ft_vec_add(light->center, vec);
-		light = light->next;
+		/* light = light->next; */
 	}
 }
