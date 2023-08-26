@@ -2,14 +2,15 @@
 
 float	plane_inter(t_vec *o, t_vec *d, t_plane *plane)
 {
-	float	a;
-
-	a = ft_vec_mult_dot(plane->normal, d);
-	if (a == 0)
-		return (INFINITY);
-	t_vec *g = ft_vec_substr(plane->point, o);
-	a = ft_vec_mult_dot(g, plane->normal) / a;
-	if (a < 0.001)
-		return (INFINITY);
-	return (a);
+	float	denom;
+	float	x;
+	
+	denom = ft_vec_mult_dot(plane->normal, d);
+	if (fabs(denom) > 0)
+	{
+		x = ft_vec_mult_dot(ft_vec_substr(plane->point, o), plane->normal) / denom;
+		if (x > 1e-6)
+			return (x);
+	}
+	return (INFINITY);
 }
