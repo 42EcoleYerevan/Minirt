@@ -22,7 +22,7 @@ int main()
 
 	scene = new_scene(WIDTH, HEIGHT);
 	ft_parser("scenes/new.rt", scene);
-	ft_print_scene(scene);
+	// ft_print_scene(scene);
 
     mlx = mlx_init();
 	scene->mlx = mlx;

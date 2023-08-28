@@ -12,9 +12,9 @@ t_figure *new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], 
 	cylinder->direction = direction;
 	cylinder->radius = radius_height[0];
 	cylinder->height = radius_height[1];
-	cylinder->specular = 0;
 	figure = new_figure(cylinder, CYLINDER);
 	figure->color = color;
+	figure->specular = 100;
 	figure->next = NULL;
 	return (figure);
 }

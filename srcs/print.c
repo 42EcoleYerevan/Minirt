@@ -75,7 +75,7 @@ void ft_print_plane(t_figure *figure)
 	plane = (t_plane *)figure->data;
 	printf("Plane:\n");
 	printf("Point: %f %f %f\n", plane->point->x, plane->point->y, plane->point->z);
-	printf("Normal: %f %f %f\n", plane->normal->x, plane->normal->y, plane->normal->z);
+	// printf("Normal: %f %f %f\n", plane->normal->x, plane->normal->y, plane->normal->z);
 	printf("Color: %d %d %d\n\n", figure->color->r, figure->color->g, figure->color->b);
 }
 

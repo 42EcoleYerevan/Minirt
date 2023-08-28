@@ -17,10 +17,6 @@ float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float
             min_t = t;
             *obj = figure;
         }
-		// if (*obj && (*obj)->type == PLANE && min_val > 0)
-		// 	printf("plane inter, min val = %f, t = %f\n", min_val, min_t);
-		// if (*obj && (*obj)->type == SPHERE && min_val > 0)
-		// 	printf("sphere inter, min val = %f, t = %f\n", min_val, min_t);
 		figure = figure->next;
 	}
 	return (min_t);
@@ -31,6 +27,7 @@ float	cacl_diffuse(t_vec *l, t_vec *n, t_light *light)
 {
 	float	dot;
 
+	// printf("x = %f\n", n->x);
 	dot = ft_vec_mult_dot(n, l);
 	if (dot > 0)
 		return ((light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l)));
@@ -48,13 +45,10 @@ float	calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s)
 	v = new_vector(2 * n->x, 2 * n->y, 2 * n->z);
 	ft_vec_mult(v, ft_vec_mult_dot(n, l));
 	r = ft_vec_substr(v, l);
-	// free(v);
 	v = new_vector(-(d->x), -(d->y), -(d->z));
 	r_dot_v = ft_vec_mult_dot(r, v);
 	if (r_dot_v > 0)
 		res = light->brightness * powf(r_dot_v / (ft_vec_len(r) * ft_vec_len(v)), s);
-	// free(v);
-	// free(r);
 	return (res);
 }
 
@@ -62,13 +56,10 @@ float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_figure *figure)
 {
 	float		bright;
 	t_vec		*l;
-	t_vec		*n;
 	t_light		*light;
     t_figure	*shadow = NULL;
 	
 	light = scene->light;
-	n = ft_vec_substr(p, ((t_sphere *)figure->data)->center);
-	ft_vec_norm(n);
 	bright = scene->ambient->brightness;
 	while (light)
 	{
@@ -81,9 +72,9 @@ float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_figure *figure)
 			free(l);
 		 	continue ;
 		}
-		bright += cacl_diffuse(l, n, light);
-		if (((t_sphere *)figure->data)->specular > 0)
-			bright += calc_specular(ray, l, n, light, ((t_sphere *)figure->data)->specular);
+		bright += cacl_diffuse(l, figure->normal, light);
+		if (figure->specular > 0)
+			bright += calc_specular(ray, l, figure->normal, light, figure->specular);
 		light = light->next;
 	}
 	if (bright > 1)
@@ -91,34 +82,7 @@ float	calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_figure *figure)
 	return (bright);
 }
 
-float calc_plane_light(t_vec *p, t_scene *scene, t_plane *plane)
-{
-    float bright = scene->ambient->brightness;
-    t_vec *l;
-    t_light *light = scene->light;
-	t_figure *shadow = NULL;
 
-    while (light)
-    {
-        l = ft_vec_substr(light->center, p);
-		float t = closest_inter(scene->figure, &shadow, p, l, 0.001);
-        if (shadow != NULL && t <= 1)
-        {
-			light = light->next;
-			free(l);
-		 	continue ;
-		}
-        float distance_to_light = ft_vec_len(l);
-        float dot = ft_vec_mult_dot(plane->normal, l);
-        if (dot > 0)
-            bright += (light->brightness * dot) / (ft_vec_len(plane->normal) * distance_to_light);
-        free(l);
-        light = light->next;
-    }
-    if (bright > 1)
-        return 1;
-    return bright;
-}
 
 int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure)
 {
@@ -133,10 +97,14 @@ int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure)
 	p = new_vector(d->x * min_t, d->y * min_t, d->z * min_t);
 	ft_vec_add(p, o);
 	if (obj && obj->type == PLANE)
-		return get_color(obj->color->r, obj->color->g, obj->color->b, calc_plane_light(p, scene, obj->data));
-	if (obj && obj->type == SPHERE)
-		return (get_color(obj->color->r,obj->color->g, obj->color->b, calc_light(p, d, scene, obj)));
-	return (0);
+		obj->normal = ft_vec_dup(((t_plane *)obj->data)->normal);
+	else 
+	{
+		obj->normal = ft_vec_substr(p, ((t_sphere *)obj->data)->center);
+		ft_vec_norm(obj->normal);
+	}
+	// printf("%f - x, %f - y, %f - z", obj->normal->x, obj->normal->y, obj->normal->z);
+	return (get_color(obj->color->r,obj->color->g, obj->color->b, calc_light(p, d, scene, obj)));
 }
 
 void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)

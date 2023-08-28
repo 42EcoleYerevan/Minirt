@@ -33,14 +33,12 @@ typedef struct s_ambient
 typedef struct	s_sphere {
 	t_vec			*center;
 	float			radius;
-	int				specular;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_vec	*point;
 	t_vec	*normal;
-	int		specular;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -49,7 +47,6 @@ typedef struct s_cylinder
 	t_vec	*direction;
 	float	radius;
 	float	height;
-	int		specular;
 }	t_cylinder;
 
 typedef struct s_light
@@ -72,9 +69,11 @@ typedef struct	s_camera
 
 typedef struct s_figure
 {
-	int				type;
+	t_vec			*normal;
 	t_color			*color;
 	void			*data;
+	int				specular;
+	int				type;
 	struct s_figure	*next;
 }	t_figure;
 
