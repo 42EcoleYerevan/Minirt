@@ -122,9 +122,9 @@ float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 float		plane_inter(t_vec *o, t_vec *d, t_plane *plane);
 void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
 int			ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure);
-float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float min_val);
+float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d);
 float		calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_figure *figure);
-float		calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s);
+float		calc_specular(t_vec	*d, t_vec *l, t_light *light, t_figure *figure);
 float		cacl_diffuse(t_vec *l, t_vec *n, t_light *light);
 
 
