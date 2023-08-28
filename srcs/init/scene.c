@@ -13,9 +13,9 @@ t_scene		*new_scene(float width, float height)
 	new->ambient = NULL;
 	new->light = NULL;
 	new->figure = NULL;
-	new->x_angle = 0.1;
-	new->y_angle = 0.1;
-	new->z_angle = 0.1;
+	new->x_angle = 0.3;
+	new->y_angle = 0.3;
+	new->z_angle = 0.3;
 	new->xmove = 20.0f;
 	new->ymove = 20.0f;
 	new->zmove = 20.0f;
