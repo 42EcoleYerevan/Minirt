@@ -8,7 +8,8 @@ int render(void *scene)
 	t_scene		*tscene;
 
 	tscene = (t_scene *)scene;
-    scene_render(tscene->mlx, tscene->win, scene, 0, 0);
+	tscene->vplane = new_vplane(tscene->width, tscene->height, tscene->cams->fov);
+    scene_render(tscene, 0, 0);
 	if (tscene->ui == 1)
 		ft_text_render(tscene);
 	return (0);

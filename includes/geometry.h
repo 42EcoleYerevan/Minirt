@@ -95,6 +95,7 @@ typedef struct	s_scene
 	t_ambient	*ambient;
 	t_light		*light;
 	t_vplane	*vplane;
+	t_vec		*vecs[3];
 	float		width;
 	float		height;
 	int 		button;

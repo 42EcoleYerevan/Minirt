@@ -10,7 +10,7 @@ float	closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d)
 	{
 		if (figure->type == SPHERE)
 			t = sphere_inter(o, d, (t_sphere *)figure->data);
-		if (figure->type == PLANE)
+		else
 			t = plane_inter(o, d, (t_plane *)figure->data);
 		if ((t >= 0.001) && (t < min_t))
 		{
@@ -22,58 +22,70 @@ float	closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d)
 	return (min_t);
 }
 
-int	ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure)
+t_vec	*create_sphere_norm(t_vec *p, t_vec *center)
+{
+	t_vec	*new;
+
+	new = ft_vec_substr(p, center);
+	ft_vec_norm(new);
+	return (new);
+}
+
+t_vec	*new_vec_obj_cross(t_scene *scene, t_figure **obj)
 {
 	float		min_t;
+	t_vec		*p;
+
+	min_t = closest_inter(scene->figure, obj, scene->vecs[1], scene->vecs[0]);
+	if (*obj == NULL)
+		return (NULL);
+	p = new_vector(scene->vecs[0]->x * min_t, scene->vecs[0]->y * min_t,
+			scene->vecs[0]->z * min_t);
+	ft_vec_add(p, scene->vecs[1]);
+	return (p);
+}
+
+int	ray_trace(t_scene *scene)
+{
 	t_figure	*obj;
 	t_vec		*p;
 	int			color;
 
 	obj = NULL;
-	min_t = closest_inter(figure, &obj, o, d);
+	p = new_vec_obj_cross(scene, &obj);
 	if (obj == NULL)
 		return (0);
-	p = new_vector(d->x * min_t, d->y * min_t, d->z * min_t);
-	ft_vec_add(p, o);
 	if (obj && obj->type == PLANE)
 		obj->normal = ft_vec_dup(((t_plane *)obj->data)->normal);
 	else
-	{
-		obj->normal = ft_vec_substr(p, ((t_sphere *)obj->data)->center);
-		ft_vec_norm(obj->normal);
-	}
+		obj->normal = create_sphere_norm(p, ((t_sphere *)obj->data)->center);
 	color = get_color(obj->color->r, obj->color->g, obj->color->b,
-			calc_light(p, d, scene, obj));
+			calc_light(p, scene, obj));
 	free(obj->normal);
 	free(p);
 	return (color);
 }
 
-void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)
+void	scene_render(t_scene *scene, int mlx_x, int mlx_y)
 {
 	float		x_angle;
 	float		y_angle;
-	t_vplane	*vplane;
-	t_vec		*ray;
 
-	vplane = new_vplane(scene->width, scene->height, scene->cams->fov);
-	scene->vplane = vplane;
-	y_angle = scene->height / 2;
-	while (y_angle >= (scene->height / 2) * (-1))
+	y_angle = scene->height / 2 + 1;
+	while (--y_angle >= (scene->height / 2) * (-1))
 	{
-		x_angle = (scene->width / 2) * (-1);
+		x_angle = (scene->width / 2) * (-1) - 1;
 		mlx_x = 0;
-		while (x_angle <= scene->width / 2)
+		while (++x_angle <= scene->width / 2)
 		{
-			ray = new_vector(x_angle * vplane->x_pixel,
-					y_angle * vplane->y_pixel, -1);
-			mlx_pixel_put(mlx, win, mlx_x, mlx_y,
-				ray_trace(ray, scene->cams->origin, scene, scene->figure));
-			free(ray);
-			x_angle++;
+			scene->vecs[0] = new_vector(x_angle * scene->vplane->x_pixel,
+					y_angle * scene->vplane->y_pixel, -1);
+			scene->vecs[1] = scene->cams->origin;
+			mlx_pixel_put(scene->mlx, scene->win, mlx_x, mlx_y,
+				ray_trace(scene));
+			free(scene->vecs[0]);
 			mlx_x++;
 		}
-		y_angle--;
 		mlx_y++;
 	}
 }

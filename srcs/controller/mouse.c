@@ -19,7 +19,7 @@ int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 	{
 		d = new_vector(x * scene->vplane->x_pixel, y * scene->vplane->y_pixel, 1);
 		ft_vec_norm(d);
-		closest_inter(scene->figure, &f, scene->cams->origin, d, 0);
+		closest_inter(scene->figure, &f, scene->cams->origin, d);
 		if (!f)
 		{
 			puts("no figure");
