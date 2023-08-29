@@ -10,9 +10,24 @@ void	ft_mouse_scroll_hook(int keycode, t_scene *scene)
 
 int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 {
-	(void)x;
-	(void)y;
+	t_vec		*d;
+	t_figure	*f;
+
+	f = NULL;
 	scene->button = keycode;
+	if (keycode == 1)
+	{
+		d = new_vector(x * scene->vplane->x_pixel, y * scene->vplane->y_pixel, 1);
+		ft_vec_norm(d);
+		closest_inter(scene->figure, &f, scene->cams->origin, d, 0);
+		if (!f)
+		{
+			puts("no figure");
+			return (0);
+		}
+		printf("%d\n", f->type);
+		free(d);
+	}
 	ft_mouse_scroll_hook(keycode, scene);
 	return (0);
 }
