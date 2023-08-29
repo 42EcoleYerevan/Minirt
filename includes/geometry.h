@@ -16,6 +16,14 @@ typedef struct	s_vec
 	float	w;
 }	t_vec;
 
+typedef struct	s_abc
+{
+	float	a;
+	float	b;
+	float	c;
+	float	disc;
+}	t_abc;
+
 typedef struct s_color
 {
 	int		r;

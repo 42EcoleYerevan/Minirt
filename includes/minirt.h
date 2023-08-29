@@ -111,6 +111,7 @@ t_light		*new_light(t_vec *center, float brightness, t_color *color);
 t_vplane	*new_vplane(float width, float height, float fov);
 t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
+void		normal_check_and_reverse(t_vec *normal);
 t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
 void		ft_init_hooks(t_scene *scene);
