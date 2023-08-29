@@ -94,6 +94,7 @@ typedef struct	s_scene
 	t_camera	*cams;
 	t_ambient	*ambient;
 	t_light		*light;
+	t_vplane	*vplane;
 	float		width;
 	float		height;
 	int 		button;
@@ -103,6 +104,7 @@ typedef struct	s_scene
 	float		xmove;
 	float		ymove;
 	float		zmove;
+	int			ui;
 }	t_scene;
 
 #endif

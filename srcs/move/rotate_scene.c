@@ -1,4 +1,3 @@
-#include "geometry.h"
 #include "minirt.h"
 
 static void	ft_rotate_lights(t_light *light, float *matrix);

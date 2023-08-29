@@ -33,13 +33,21 @@ void	ft_move_keyhook(int keycode, t_scene *scene)
 		ft_ymove_scene(scene, scene->ymove);
 }
 
+void	ft_ui_keyhook(int keycode, t_scene *scene)
+{
+	if (keycode == 32)
+		scene->ui = -scene->ui;
+}
+
 int key_hook(int keycode, t_scene *scene)
 {
 	printf("keycode: %d\n", keycode);
+	scene->button = keycode;
 	if (keycode == 53)
 		exit(0);
 	ft_rotate_keyhook(keycode, scene);
 	ft_move_keyhook(keycode, scene);
+	ft_ui_keyhook(keycode, scene);
 	render(scene);
 	return (0);
 }

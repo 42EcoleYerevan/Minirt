@@ -115,6 +115,7 @@ void	scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y)
 	t_vec		*ray;
 
 	vplane = new_vplane(scene->width, scene->height, scene->cams->fov);
+	scene->vplane = vplane;
 	y_angle = scene->height / 2;
 	while (y_angle >= (scene->height / 2) * (-1))
 	{
