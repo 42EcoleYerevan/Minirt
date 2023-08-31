@@ -15,6 +15,7 @@ float	sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere)
 	if (abc.disc < 0)
 		return (0);
 	t1 = (-abc.b - sqrt(abc.disc)) / (2 * abc.a);
+	free(cam_sphere);
 	if (t1 <= 0)
 		return (0);
 	return (t1);

@@ -121,6 +121,7 @@ float		*ft_new_zero_matrix(void);
 // ray tracing
 float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 float		plane_inter(t_vec *o, t_vec *d, t_plane *plane);
+float		cylinder_inter(t_vec *o, t_vec *ray, t_cylinder *cylinder);
 void		scene_render(t_scene *scene, int mlx_x, int mlx_y);
 int			ray_trace(t_scene *scene);
 float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d);
