@@ -60,10 +60,14 @@ float *ft_mat_add(float *mat1, float *mat2)
 
 void	ft_vec_mult_mat(t_vec *vec, float *mat)
 {
-	vec->x = vec->x * mat[0] + vec->y * mat[4] + vec->z * mat[8] + mat[12];
-	vec->y = vec->x * mat[1] + vec->y * mat[5] + vec->z * mat[9] + mat[13];
-	vec->z = vec->x * mat[2] + vec->y * mat[6] + vec->z * mat[10] + mat[14];
-	vec->w = vec->x * mat[3] + vec->y * mat[7] + vec->z * mat[11] + mat[15];
+	vec->x = vec->x * mat[0] + vec->y * mat[4] + vec->z * mat[8] + \
+			 vec->w * mat[12];
+	vec->y = vec->x * mat[1] + vec->y * mat[5] + vec->z * mat[9] + \
+			 vec->w * mat[13];
+	vec->z = vec->x * mat[2] + vec->y * mat[6] + vec->z * mat[10] + \
+			 vec->w * mat[14];
+	/* vec->w = vec->x * mat[3] + vec->y * mat[7] + vec->z * mat[11] + \ */
+	/* 		 vec->w * mat[15]; */
 }
 
 t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat)
@@ -71,9 +75,13 @@ t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat)
 	t_vec *new_vec;
 
 	new_vec = malloc(sizeof(t_vec));
-	new_vec->x = vec->x * mat[0] + vec->y * mat[4] + vec->z * mat[8] + mat[12];
-	new_vec->y = vec->x * mat[1] + vec->y * mat[5] + vec->z * mat[9] + mat[13];
-	new_vec->z = vec->x * mat[2] + vec->y * mat[6] + vec->z * mat[10] + mat[14];
-	new_vec->w = vec->x * mat[3] + vec->y * mat[7] + vec->z * mat[11] + mat[15];
+	new_vec->x = vec->x * mat[0] + vec->y * mat[4] + vec->z * mat[8] + \
+				 vec->w * mat[12];
+	new_vec->y = vec->x * mat[1] + vec->y * mat[5] + vec->z * mat[9] + \
+				 vec->w * mat[13];
+	new_vec->z = vec->x * mat[2] + vec->y * mat[6] + vec->z * mat[10] + \
+				 vec->w * mat[14];
+	/* new_vec->w = vec->x * mat[3] + vec->y * mat[7] + vec->z * mat[11] + \ */
+	/* 			 vec->w * mat[15]; */
 	return (new_vec);
 }

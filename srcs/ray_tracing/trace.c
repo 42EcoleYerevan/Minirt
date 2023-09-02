@@ -5,6 +5,7 @@ float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float
 	float	min_t;
 	float	t;
 
+	t = 0;
 	min_t = INFINITY;
 	while (figure)
 	{

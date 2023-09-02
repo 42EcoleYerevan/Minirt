@@ -33,6 +33,7 @@ static void	ft_rotate_plane(t_figure *figure, float *matrix)
 
 	plane = figure->data;
 	ft_vec_mult_mat(plane->point, matrix);
+	ft_vec_mult_mat(plane->normal, matrix);
 	ft_vec_mult_mat(figure->normal, matrix);
 }
 

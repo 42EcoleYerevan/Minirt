@@ -7,13 +7,15 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "../libft/libft.h"
+# include "./geometry.h"
 
 # ifdef __APPLE__
+# define OSFLAG 1
 # include "../mlx_mac/mlx.h"
 # elif __linux__
+# define OSFLAG 2
 # include "../mlx_linux/mlx.h"
 # endif
-# include "./geometry.h"
 
 # define WIDTH 800
 # define HEIGHT 600
