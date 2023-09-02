@@ -11,16 +11,20 @@ float	closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d)
 		if (figure->type == SPHERE)
 			t = sphere_inter(o, d, (t_sphere *)figure->data);
 		else if (figure->type == PLANE)
-			t = plane_inter(o, d, (t_plane *)figure->data);
+			t = plane_inter(o, d, ((t_plane *)figure->data)->point,
+				((t_plane *)figure->data)->normal);
 		else
 			t = cylinder_inter(o, d, (t_cylinder *)figure->data);
 		if ((t >= 0.001) && (t < min_t))
 		{
 			min_t = t;
 			*obj = figure;
+			printf("min_t = %f , type %d\n", min_t, (*obj)->type);
 		}
 		figure = figure->next;
 	}
+	if (*obj)	
+		printf("------------------\n THIS min_t = %f , type %d\n------------------------\n", min_t, (*obj)->type);
 	return (min_t);
 }
 
