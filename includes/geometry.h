@@ -55,6 +55,7 @@ typedef struct s_cylinder
 	t_vec	*direction;
 	float	radius;
 	float	height;
+	float	dist[2];
 }	t_cylinder;
 
 typedef struct s_light

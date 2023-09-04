@@ -1,4 +1,4 @@
-#include <minirt.h>
+#include "../../includes/minirt.h"
 
 float	cacl_diffuse(t_vec *l, t_vec *n, t_light *light)
 {

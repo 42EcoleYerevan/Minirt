@@ -34,3 +34,11 @@ t_vec	*ft_vec_cross(t_vec *vec1, t_vec *vec2)
 			vec1->x * vec2->y - vec1->y * vec2->x);
 	return (res);
 }
+
+float	ft_vec_dist(t_vec *v1, t_vec *v2)
+{
+	float	dist;
+
+	dist = sqrt(pow(v2->x - v1->x, 2) + pow(v2->y - v1->y, 2) + pow(v2->z - v1->z, 2));
+	return (dist);
+}

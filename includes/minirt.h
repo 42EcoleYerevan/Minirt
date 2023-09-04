@@ -86,6 +86,7 @@ void	ft_vec_add(t_vec *vec1, t_vec *vec2);
 void	ft_vec_norm(t_vec *vec);
 float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2);
 t_vec	*ft_vec_cross(t_vec *vec1, t_vec *vec2);
+float	ft_vec_dist(t_vec *v1, t_vec *v2);
 
 void	err_exit(char *str);
 
@@ -121,7 +122,7 @@ float		*ft_new_zero_matrix(void);
 // ray tracing
 float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
 float		plane_inter(t_vec *o, t_vec *d, t_vec *point, t_vec *normal);
-float		cylinder_inter(t_vec *o, t_vec *ray, t_cylinder *cylinder);
+float		cylinder_inter(t_vec *o, t_vec *d, t_figure *figure);
 void		scene_render(t_scene *scene, int mlx_x, int mlx_y);
 int			ray_trace(t_scene *scene);
 float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d);
