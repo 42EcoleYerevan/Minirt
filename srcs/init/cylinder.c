@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_figure *new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color)
+t_figure	*new_cylinder(t_vec center, t_vec direction, float radius_height[2], t_color *color)
 {
 	t_figure	*figure;
 	t_cylinder	*cylinder;
@@ -16,5 +16,6 @@ t_figure *new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], 
 	figure->color = color;
 	figure->specular = 100;
 	figure->next = NULL;
+	printf("height = %f, radius = %f\n", cylinder->height, cylinder->radius);
 	return (figure);
 }
