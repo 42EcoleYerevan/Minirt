@@ -3,8 +3,8 @@
 int	ft_set_camera(char **tokens, t_scene *scene)
 {
 	t_camera	*camera;
-	t_vec	*center;
-	t_vec	*direction;
+	t_vec	center;
+	t_vec	direction;
 	float	fov;
 
 	if (!tokens || !scene)

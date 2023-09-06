@@ -1,10 +1,10 @@
 #include "minirt.h"
 
-static void	ft_rotate_cylinder(t_figure *figure, float *matrix);
-static void	ft_rotate_plane(t_figure *figure, float *matrix);
-static void	ft_rotate_sphere(t_sphere *sphere, float *matrix);
+static void	ft_rotate_sphere(t_sphere *sphere, t_matrix matrix);
+static void	ft_rotate_plane(t_figure *figure, t_matrix matrix);
+static void	ft_rotate_cylinder(t_figure *figure, t_matrix matrix);
 
-void ft_rotate_objects(t_scene *scene, float *matrix)
+void ft_rotate_objects(t_scene *scene, t_matrix matrix)
 {
 	t_figure	*figure;
 
@@ -21,27 +21,28 @@ void ft_rotate_objects(t_scene *scene, float *matrix)
 	}
 }
 
-static void	ft_rotate_sphere(t_sphere *sphere, float *matrix)
+static void	ft_rotate_sphere(t_sphere *sphere, t_matrix matrix)
 {
-	ft_vec_mult_mat(sphere->center, matrix);
+
+	sphere->center = ft_vec_mult_mat(sphere->center, matrix);
 }
 
-static void	ft_rotate_plane(t_figure *figure, float *matrix)
+static void	ft_rotate_plane(t_figure *figure, t_matrix matrix)
 {
 	t_plane		*plane;
 
 	plane = figure->data;
-	ft_vec_mult_mat(plane->point, matrix);
-	ft_vec_mult_mat(plane->normal, matrix);
-	ft_vec_mult_mat(figure->normal, matrix);
+	plane->point = ft_vec_mult_mat(plane->point, matrix);
+	plane->normal = ft_vec_mult_mat(plane->normal, matrix);
+	figure->normal = ft_vec_mult_mat(figure->normal, matrix);
 }
 
-static void	ft_rotate_cylinder(t_figure *figure, float *matrix)
+static void	ft_rotate_cylinder(t_figure *figure, t_matrix matrix)
 {
 	t_cylinder		*cylinder;
 
 	cylinder = (t_cylinder *)figure->data;
-	ft_vec_mult_mat(cylinder->center, matrix);
-	ft_vec_mult_mat(cylinder->direction, matrix);
-	ft_vec_mult_mat(figure->normal, matrix);
+	cylinder->center = ft_vec_mult_mat(cylinder->center, matrix);
+	cylinder->direction = ft_vec_mult_mat(cylinder->direction, matrix);
+	figure->normal = ft_vec_mult_mat(figure->normal, matrix);
 }

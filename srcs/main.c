@@ -1,4 +1,3 @@
-#include "geometry.h"
 #include "minirt.h"
 
 void ft_print_matrix(float *matrix)

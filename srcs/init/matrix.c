@@ -1,26 +1,41 @@
 #include "minirt.h"
 
-float *ft_new_zero_matrix(void)
+t_matrix ft_new_zero_matrix(void)
 {
-	float *mat;
+	int row;
+	int col;
+	t_matrix mat;
 
-	mat = (float *)malloc(sizeof(float) * 16);
-	if (!mat)
-		return (NULL);
-	ft_bzero(mat, sizeof(float) * 16);
+	row = 0;
+	while (row < 4)
+	{
+		col = 0;
+		while (col < 4)
+		{
+			mat.m[row * 4 + col] = 0;
+			col++;
+		}
+		row++;
+	}
 	return (mat);
 }
 
-float	*ft_identity_matrix(void)
+t_matrix ft_identity_matrix(void)
 {
-	float	*mat;
+	int row;
+	int col;
+	t_matrix mat;
 
-	mat = ft_new_zero_matrix();
-	if (!mat)
-		return (NULL);
-	mat[0] = 1;
-	mat[5] = 1;
-	mat[10] = 1;
-	mat[15] = 1;
+	row = 0;
+	while (row < 4)
+	{
+		col = 0;
+		while (col < 4)
+		{
+			mat.m[row * 4 + col] = (row == col);
+			col++;
+		}
+		row++;
+	}
 	return (mat);
 }

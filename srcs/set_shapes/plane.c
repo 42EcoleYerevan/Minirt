@@ -3,8 +3,8 @@
 int	ft_set_plane(char **tokens, t_scene *scene)
 {
 	t_figure	*plane;
-	t_vec		*point;
-	t_vec		*normal;
+	t_vec		point;
+	t_vec		normal;
 	t_color		*color;
 
 	point = ft_get_vector_from_token(tokens[1]);

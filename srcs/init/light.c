@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_light	*new_light(t_vec *center, float brightness, t_color *color)
+t_light	*new_light(t_vec center, float brightness, t_color *color)
 {
 	t_light	*new;
 

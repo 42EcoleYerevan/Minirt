@@ -1,14 +1,14 @@
 #include "minirt.h"
 
 void ft_text_render(t_scene *scene);
-void ft_draw_rect_fill(t_scene *scene, t_vec *rect, int color);
+void ft_draw_rect_fill(t_scene *scene, t_vec rect, int color);
 
 int render(void *scene)
 {
 	t_scene		*tscene;
 
 	tscene = (t_scene *)scene;
-    scene_render(tscene->mlx, tscene->win, scene, 0, 0);
+    scene_render(tscene, 0, 0);
 	if (tscene->ui == 1)
 		ft_text_render(tscene);
 	ft_print_scene(scene);
@@ -44,16 +44,16 @@ void ft_text_render(t_scene *scene)
 	}
 }
 
-void ft_draw_rect_fill(t_scene *scene, t_vec *rect, int color)
+void ft_draw_rect_fill(t_scene *scene, t_vec rect, int color)
 {
 	int x;
 	int y;
 
-	x = rect->x;
-	while (x < rect->x + rect->z)
+	x = rect.x;
+	while (x < rect.x + rect.z)
 	{
-		y = rect->y;
-		while (y < rect->y + rect->w)
+		y = rect.y;
+		while (y < rect.y + rect.w)
 		{
 			mlx_pixel_put(scene->mlx, scene->win, x, y, color);
 			y++;

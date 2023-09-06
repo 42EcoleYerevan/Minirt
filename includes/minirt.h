@@ -15,11 +15,12 @@
 # endif
 # include "./geometry.h"
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1000
+# define HEIGHT 1000
+# define EPSILON 0.001
 
 //shapes
-t_vec	*ft_get_vector_from_token(char *token);
+t_vec	ft_get_vector_from_token(char *token);
 t_color	*ft_get_color_from_token(char *token);
 int		ft_set_ambient(char **tokens, t_scene *scene);
 int		ft_set_camera(char **tokens, t_scene *scene);
@@ -78,14 +79,15 @@ int		ft_parse_map(char **lines, t_scene *scene);
 int		ft_set_shape(char **tokens, t_scene *scene);
 
 // math
-void	ft_vec_mult(t_vec *vec, float mult);
-float	ft_vec_mult_vec(t_vec *vec1, t_vec *vec2);
-float	ft_vec_len(t_vec *vec);
-t_vec	*ft_vec_substr(t_vec *vec1, t_vec *vec2);
-void	ft_vec_add(t_vec *vec1, t_vec *vec2);
-void	ft_vec_norm(t_vec *vec);
-float	ft_vec_mult_dot(t_vec *vec1, t_vec *vec2);
-t_vec	*ft_vec_cross(t_vec *vec1, t_vec *vec2);
+t_vec	ft_vec_mult(t_vec vec, float mult);
+float	ft_vec_len(t_vec vec);
+t_vec	ft_vec_substr(t_vec vec1, t_vec vec2);
+t_vec	ft_vec_add(t_vec vec1, t_vec vec2);
+t_vec	ft_vec_norm(t_vec vec);
+float	ft_vec_mult_dot(t_vec vec1, t_vec vec2);
+float	ft_vec_dist(t_vec v1, t_vec v2);
+t_vec	ft_vec_dup(t_vec vec);
+t_vec	ft_vec_cross(t_vec vec1, t_vec vec2);
 
 void	err_exit(char *str);
 
@@ -96,78 +98,81 @@ int		get_g(int color);
 int		get_b(int color);
 
 // geometry init
-t_vec 		*ft_vec_subtract(t_vec *vec1, t_vec *vec2);
-t_vec		*ft_vec_normalize(t_vec *vec);
-t_vec		*ft_vec_cross(t_vec *vec1, t_vec *vec2);
-t_vec		*ft_vec_dup(t_vec *vec);
-t_vec		*new_4vector(float x, float y, float z, float w);
-t_vec		*new_zero_vec(void);
-t_vec		*new_vector(float x, float y, float z);
-t_figure	*new_sphere(t_vec *vec, float radius, t_color *color);
-t_figure	*new_cylinder(t_vec *center, t_vec *direction, float radius_height[2], t_color *color);
-t_camera	*new_camera(t_vec *origin, t_vec *direction, float fov);
+t_vec		new_4vector(float x, float y, float z, float w);
+t_vec		new_zero_vec(void);
+t_vec		new_vector(float x, float y, float z);
+t_figure	*new_sphere(t_vec vec, float radius, t_color *color);
+t_figure	*new_cylinder(t_vec center, t_vec direction, float radius_height[2], t_color *color);
+t_camera	*new_camera(t_vec origin, t_vec direction, float fov);
 t_scene		*new_scene(float width, float height);
-t_light		*new_light(t_vec *center, float brightness, t_color *color);
+t_light		*new_light(t_vec center, float brightness, t_color *color);
 t_vplane	*new_vplane(float width, float height, float fov);
 t_ambient	*new_ambient(t_color *color, float brightness);
 t_color		*new_color(int r, int g, int b, float a);
-t_figure	*new_plane(t_vec *center, t_vec *direction, t_color *color);
+t_vec		normal_check_and_reverse(t_vec normal);
+t_figure	*new_plane(t_vec center, t_vec direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
 void		ft_init_hooks(t_scene *scene);
-float		*ft_identity_matrix(void);
-float		*ft_new_zero_matrix(void);
+t_matrix	ft_new_zero_matrix(void);
+t_matrix	ft_identity_matrix(void);
 
 // ray tracing
-float		sphere_inter(t_vec *o, t_vec *ray, t_sphere *sphere);
-float		plane_inter(t_vec *o, t_vec *d, t_plane *plane);
-void		scene_render(void *mlx, void *win, t_scene *scene, int mlx_x, int mlx_y);
-int			ray_trace(t_vec *d, t_vec *o, t_scene *scene, t_figure *figure);
-float		closest_inter(t_figure *figure, t_figure **obj, t_vec *o, t_vec *d, float min_val);
-float		calc_light(t_vec *p, t_vec *ray, t_scene *scene, t_figure *figure);
-float		calc_specular(t_vec	*d, t_vec *l, t_vec *n, t_light *light, int s);
-float		cacl_diffuse(t_vec *l, t_vec *n, t_light *light);
+float		sphere_inter(t_vec o, t_vec ray, t_sphere *sphere);
+float		plane_inter(t_vec o, t_vec d, t_vec point, t_vec normal);
+float		cylinder_inter(t_vec o, t_vec d, t_figure *figure);
+void		scene_render(t_scene *scene, int mlx_x, int mlx_y);
+int			ray_trace(t_scene *scene);
+float		closest_inter(t_figure *figure, t_figure **obj, t_vec o, t_vec d);
+t_vec		create_sphere_norm(t_vec p, t_vec center);
+t_vec		new_vec_obj_cross(t_scene *scene, t_figure **obj);
 
+// light calculation
+float		calc_light(t_vec p, t_scene *scene, t_figure *figure);
+float		calc_specular(t_scene *scene, t_light *light, t_figure *figure);
+float		cacl_diffuse(t_vec l, t_vec n, t_light *light);
+int			check_shadow(t_scene *scene, t_light **light, t_vec p);
 
 // print
 void	ft_print_scene(t_scene *scene);
 void	ft_print_sphere(t_figure *figure);
 void	ft_print_plane(t_figure *figure);
 void	ft_print_cylinder(t_figure *figure);
-void	ft_print_vec(t_vec *vec);
+void	ft_print_vec(t_vec vec);
 
 // controller
-int key_hook(int keycode, t_scene *scene);
-int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene);
-int ft_mouseup_hook(int keycode, int x, int y, t_scene *scene);
-int ft_mousemove_hook(int x, int y, t_scene *scene);
+void	ft_mouse_scroll_hook(int keycode, t_scene *scene);
+int		ft_mousedown_hook(int keycode, int x, int y, t_scene *scene);
+int		ft_mouseup_hook(int keycode, int x, int y, t_scene *scene);
+int		ft_mousemove_hook(int x, int y, t_scene *scene);
+int		key_hook(int keycode, t_scene *scene);
 
 // render
 int render(void *scene);
 
 // matrix_act
-float	*ft_mat_mult(float *mat1, float *mat2);
-float	*ft_new_zero_matrix(void);
-void	ft_vec_mult_mat(t_vec *vec, float *mat);
-t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat);
+t_matrix	ft_mat_mult(t_matrix mat1, t_matrix mat2);
+t_matrix	ft_mat_sub(t_matrix mat1, t_matrix mat2);
+t_matrix	ft_mat_add(t_matrix mat1, t_matrix mat2);
+t_vec		ft_vec_mult_mat(t_vec vec, t_matrix mat);
 
 // projection
 float	*ft_view_matrix(t_camera *camera);
 void	ft_move_scene_to_camera(t_scene *scene, t_camera *camera);
 
 // rotation
-float	*ft_xrotation_matrix(float alfa);
-float	*ft_yrotation_matrix(float alfa);
-float	*ft_zrotation_matrix(float alfa);
-void	ft_rotate_objects(t_scene *scene, float *matrix);
+t_matrix	ft_xrotate_matrix(float angle);
+t_matrix	ft_yrotate_matrix(float angle);
+t_matrix	ft_zrotate_matrix(float angle);
+void		ft_rotate_objects(t_scene *scene, t_matrix matrix);
+
+// move
 void	ft_xrotate_scene(t_scene *scene, float angle);
 void	ft_yrotate_scene(t_scene *scene, float angle);
 void	ft_zrotate_scene(t_scene *scene, float angle);
-
-// move
-void	ft_move_objects(t_scene *scene, t_vec *vec);
-void	ft_xmove_scene(t_scene *scene, float x);
-void	ft_ymove_scene(t_scene *scene, float y);
-void	ft_zmove_scene(t_scene *scene, float z);
+void	ft_xmove_scene(t_scene *scene, float step);
+void	ft_ymove_scene(t_scene *scene, float step);
+void	ft_zmove_scene(t_scene *scene, float step);
+void	ft_move_obj(t_scene *scene, t_vec vector);
 
 // render 
 int render(void *scene);

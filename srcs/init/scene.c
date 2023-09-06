@@ -13,7 +13,7 @@ t_scene		*new_scene(float width, float height)
 	new->ambient = NULL;
 	new->light = NULL;
 	new->figure = NULL;
-	new->vplane = NULL;
+	new->vplane = new_vplane(width, height, 70);
 	new->x_angle = 0.3;
 	new->y_angle = 0.3;
 	new->z_angle = 0.3;
@@ -21,6 +21,6 @@ t_scene		*new_scene(float width, float height)
 	new->ymove = 20.0f;
 	new->zmove = 20.0f;
 	new->button = -1;
-	new->ui = -1;
-	return (new);	
+	new->ui = 1;
+	return (new);
 }

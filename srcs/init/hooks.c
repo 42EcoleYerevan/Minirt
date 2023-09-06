@@ -1,4 +1,4 @@
-#include "minirt.h"
+ #include "minirt.h"
 
 void	ft_init_hooks(t_scene *scene)
 {

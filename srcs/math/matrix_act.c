@@ -1,87 +1,72 @@
+#include "geometry.h"
 #include "minirt.h"
 
-float	*ft_mat_mult(float *mat1, float *mat2)
+t_matrix	ft_mat_mult(t_matrix mat1, t_matrix mat2)
 {
-	float *mat3;
+	t_matrix	out_mat;
 	int row;
 	int col;
 	int k;
-mat3 = malloc(sizeof(float) * 16); row = 0;
+
+	row = 0;
 	while (row < 4)
 	{
 		col = 0;
 		while (col < 4)
 		{
-			mat3[row * 4 + col] = 0;
 			k = 0;
+			out_mat.m[row * 4 + col] = 0;
 			while (k < 4)
 			{
-				mat3[row * 4 + col] += mat1[row * 4 + k] * mat2[k * 4 + col];
+				out_mat.m[row * 4 + col] += mat1.m[row * 4 + k] * \
+											mat2.m[k * 4 + col];
 				k++;
 			}
 			col++;
 		}
-		row++;
 	}
-	return (mat3);
+	return (out_mat);
 }
 
-float *ft_mat_sub(float *mat1, float *mat2)
+t_matrix	ft_mat_sub(t_matrix mat1, t_matrix mat2)
 {
-	float *mat3;
+	t_matrix	out_mat;
 	int i;
 
-	mat3 = malloc(sizeof(float) * 16);
 	i = 0;
 	while (i < 16)
 	{
-		mat3[i] = mat1[i] - mat2[i];
+		out_mat.m[i] = mat1.m[i] - mat2.m[i];
 		i++;
 	}
-	return (mat3);
+	return (out_mat);
 }
 
-float *ft_mat_add(float *mat1, float *mat2)
+t_matrix	ft_mat_add(t_matrix mat1, t_matrix mat2)
 {
-	float *mat3;
+	t_matrix	out_mat;
 	int i;
 
-	mat3 = malloc(sizeof(float) * 16);
 	i = 0;
 	while (i < 16)
 	{
-		mat3[i] = mat1[i] + mat2[i];
+		out_mat.m[i] = mat1.m[i] + mat2.m[i];
 		i++;
 	}
-	return (mat3);
+	return (out_mat);
 }
 
-void	ft_vec_mult_mat(t_vec *vec, float *mat)
+t_vec	ft_vec_mult_mat(t_vec vec, t_matrix mat)
 {
-	vec->x = vec->x * mat[0] + vec->y * mat[4] + \
-			 vec->z * mat[8];
-	vec->y = vec->x * mat[1] + vec->y * mat[5] + \
-			 vec->z * mat[9];
-	vec->z = vec->x * mat[2] + vec->y * mat[6] + \
-			 vec->z * mat[10];
-	/* vec->x = vec->x * mat[0] + vec->y * mat[4] + \ */
-	/* 		 vec->z * mat[8] + vec->w * mat[12]; */
-	/* vec->y = vec->x * mat[1] + vec->y * mat[5] + \ */
-	/* 		 vec->z * mat[9] + vec->w * mat[13]; */
-	/* vec->z = vec->x * mat[2] + vec->y * mat[6] + \ */
-	/* 		 vec->z * mat[10] + vec->w * mat[14]; */
-	/* vec->w = vec->x * mat[3] + vec->y * mat[7] + \ */
-			 /* vec->z * mat[11] + vec->w * mat[15]; */
-}
+	t_vec	out_vec;
 
-t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat)
-{
-	t_vec *new_vec;
-
-	new_vec = malloc(sizeof(t_vec));
-	new_vec->x = vec->x * mat[0] + vec->y * mat[4] + vec->z * mat[8] + mat[12];
-	new_vec->y = vec->x * mat[1] + vec->y * mat[5] + vec->z * mat[9] + mat[13];
-	new_vec->z = vec->x * mat[2] + vec->y * mat[6] + vec->z * mat[10] + mat[14];
-	new_vec->w = vec->x * mat[3] + vec->y * mat[7] + vec->z * mat[11] + mat[15];
-	return (new_vec);
+	out_vec.x = vec.x * mat.m[0] + vec.y * mat.m[4] + vec.z * mat.m[8] + \
+				vec.w * mat.m[12];
+	out_vec.y = vec.x * mat.m[1] + vec.y * mat.m[5] + vec.z * mat.m[9] + \
+				vec.w * mat.m[13];
+	out_vec.z = vec.x * mat.m[2] + vec.y * mat.m[6] + vec.z * mat.m[10] + \
+				vec.w * mat.m[14];
+	out_vec.w = vec.x * mat.m[3] + vec.y * mat.m[7] + vec.z * mat.m[11] + \
+				vec.w * mat.m[15];
+	return (out_vec);
 }
