@@ -33,6 +33,7 @@ int		ft_set_cylinder(char **tokens, t_scene *scene);
 void	ft_add_figure(t_scene *scene, t_figure *figure);
 
 // validator
+int		ft_is_valid_extension(char *filename);
 int		ft_validator(char **lines);
 int		ft_is_valid_float(char *str);
 int		ft_is_valid_ambient(char **tokens);
