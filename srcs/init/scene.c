@@ -21,6 +21,6 @@ t_scene		*new_scene(float width, float height)
 	new->ymove = 20.0f;
 	new->zmove = 20.0f;
 	new->button = -1;
-	new->ui = 1;
+	new->ui = -1;
 	return (new);	
 }

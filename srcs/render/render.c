@@ -11,6 +11,7 @@ int render(void *scene)
     scene_render(tscene->mlx, tscene->win, scene, 0, 0);
 	if (tscene->ui == 1)
 		ft_text_render(tscene);
+	ft_print_scene(scene);
 	return (0);
 }
 
@@ -31,7 +32,6 @@ void ft_text_render(t_scene *scene)
 		string[7] = ft_strjoin("Button: ", ft_itoa(scene->button));
 	else
 		string[7] = NULL;
-	printf("%d\n", scene->button);
 	string[8] = NULL;
 
 	ft_draw_rect_fill(scene, new_4vector(0, 0, 200, HEIGHT), 0x333333);

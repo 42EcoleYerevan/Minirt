@@ -1,4 +1,3 @@
-#include "geometry.h"
 #include "minirt.h"
 
 void ft_rotate_keyhook(int keycode, t_scene *scene)
