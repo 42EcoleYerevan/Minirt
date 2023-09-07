@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 float	closest_inter(t_figure *figure, t_figure **obj, t_vec o, t_vec d)
 {
@@ -11,12 +11,11 @@ float	closest_inter(t_figure *figure, t_figure **obj, t_vec o, t_vec d)
 	{
 		if (figure->type == SPHERE)
 			t = sphere_inter(o, d, (t_sphere *)figure->data);
-		else 
-		// if (figure->type == PLANE)
+		else if (figure->type == PLANE)
 			t = plane_inter(o, d, (((t_plane *)figure->data)->point),
 				(((t_plane *)figure->data)->normal));
-		// else if (figure->type == CYLINDER)
-		// 	t = cylinder_inter(o, d, figure);
+		else
+		 	t = cylinder_inter(o, d, figure);
 		if ((t >= 0.0001) && (t < min_t))
 		{
 			min_t = t;
