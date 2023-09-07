@@ -1,4 +1,3 @@
-#include "geometry.h"
 #include "minirt.h"
 
 void ft_print_matrix(float *matrix)
@@ -31,7 +30,7 @@ int main()
 	scene->win = win;
 	render(scene);
 	/* ft_text_render(scene); */
-	// ft_init_hooks(scene);
+	ft_init_hooks(scene);
     mlx_loop(mlx);
 
     return (0);

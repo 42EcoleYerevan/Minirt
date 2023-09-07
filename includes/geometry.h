@@ -16,6 +16,11 @@ typedef struct	s_vec
 	float	w;
 }	t_vec;
 
+typedef struct s_matrix
+{
+	float	m[16];
+}	t_matrix;
+
 typedef struct	s_abc
 {
 	float	a;

@@ -33,6 +33,7 @@ int		ft_set_cylinder(char **tokens, t_scene *scene);
 void	ft_add_figure(t_scene *scene, t_figure *figure);
 
 // validator
+int		ft_is_valid_extension(char *filename);
 int		ft_validator(char **lines);
 int		ft_is_valid_float(char *str);
 int		ft_is_valid_ambient(char **tokens);
@@ -113,8 +114,8 @@ t_vec		normal_check_and_reverse(t_vec normal);
 t_figure	*new_plane(t_vec center, t_vec direction, t_color *color);
 t_figure	*new_figure(void *data, int type);
 void		ft_init_hooks(t_scene *scene);
-float		*ft_identity_matrix(void);
-float		*ft_new_zero_matrix(void);
+t_matrix	ft_new_zero_matrix(void);
+t_matrix	ft_identity_matrix(void);
 
 // ray tracing
 float		sphere_inter(t_vec o, t_vec ray, t_sphere *sphere);
@@ -139,39 +140,40 @@ void	ft_print_plane(t_figure *figure);
 void	ft_print_cylinder(t_figure *figure);
 void	ft_print_vec(t_vec vec);
 
-// // controller
-// int key_hook(int keycode, t_scene *scene);
-// int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene);
-// int ft_mouseup_hook(int keycode, int x, int y, t_scene *scene);
-// int ft_mousemove_hook(int x, int y, t_scene *scene);
+// controller
+void	ft_mouse_scroll_hook(int keycode, t_scene *scene);
+int		ft_mousedown_hook(int keycode, int x, int y, t_scene *scene);
+int		ft_mouseup_hook(int keycode, int x, int y, t_scene *scene);
+int		ft_mousemove_hook(int x, int y, t_scene *scene);
+int		key_hook(int keycode, t_scene *scene);
 
 // render
 int render(void *scene);
 
 // matrix_act
-float	*ft_mat_mult(float *mat1, float *mat2);
-float	*ft_new_zero_matrix(void);
-void	ft_vec_mult_mat(t_vec *vec, float *mat);
-t_vec	*ft_vec_mult_mat_new(t_vec *vec, float *mat);
+t_matrix	ft_mat_mult(t_matrix mat1, t_matrix mat2);
+t_matrix	ft_mat_sub(t_matrix mat1, t_matrix mat2);
+t_matrix	ft_mat_add(t_matrix mat1, t_matrix mat2);
+t_vec		ft_vec_mult_mat(t_vec vec, t_matrix mat);
 
 // projection
 float	*ft_view_matrix(t_camera *camera);
 void	ft_move_scene_to_camera(t_scene *scene, t_camera *camera);
 
-// // rotation
-// float	*ft_xrotation_matrix(float alfa);
-// float	*ft_yrotation_matrix(float alfa);
-// float	*ft_zrotation_matrix(float alfa);
-// void	ft_rotate_objects(t_scene *scene, float *matrix);
-// void	ft_xrotate_scene(t_scene *scene, float angle);
-// void	ft_yrotate_scene(t_scene *scene, float angle);
-// void	ft_zrotate_scene(t_scene *scene, float angle);
+// rotation
+t_matrix	ft_xrotate_matrix(float angle);
+t_matrix	ft_yrotate_matrix(float angle);
+t_matrix	ft_zrotate_matrix(float angle);
+void		ft_rotate_objects(t_scene *scene, t_matrix matrix);
 
 // move
-void	ft_move_objects(t_scene *scene, t_vec *vec);
-void	ft_xmove_scene(t_scene *scene, float x);
-void	ft_ymove_scene(t_scene *scene, float y);
-void	ft_zmove_scene(t_scene *scene, float z);
+void	ft_xrotate_scene(t_scene *scene, float angle);
+void	ft_yrotate_scene(t_scene *scene, float angle);
+void	ft_zrotate_scene(t_scene *scene, float angle);
+void	ft_xmove_scene(t_scene *scene, float step);
+void	ft_ymove_scene(t_scene *scene, float step);
+void	ft_zmove_scene(t_scene *scene, float step);
+void	ft_move_obj(t_scene *scene, t_vec vector);
 
 // render 
 int render(void *scene);
