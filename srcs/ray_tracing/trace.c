@@ -11,12 +11,12 @@ float	closest_inter(t_figure *figure, t_figure **obj, t_vec o, t_vec d)
 	{
 		if (figure->type == SPHERE)
 			t = sphere_inter(o, d, (t_sphere *)figure->data);
-		else if (figure->type == PLANE)
+		else if (figure->type == CYLINDER)
+		 	t = cylinder_inter(o, d, figure);
+		else
 			t = plane_inter(o, d, (((t_plane *)figure->data)->point),
 				(((t_plane *)figure->data)->normal));
-		else
-		 	t = cylinder_inter(o, d, figure);
-		if ((t >= 0.0001) && (t < min_t))
+		if ((t > EPSILON) && (t < min_t))
 		{
 			min_t = t;
 			*obj = figure;
@@ -61,7 +61,7 @@ int	ray_trace(t_scene *scene)
 	else if (obj && obj->type == SPHERE)
 		obj->normal = create_sphere_norm(p, ((t_sphere *)obj->data)->center);
 	else
-		obj->normal = ft_vec_dup(((t_cylinder *)obj->data)->direction);
+		obj->normal = ((t_cylinder *)obj->data)->direction;
 	color = get_color(obj->color->r, obj->color->g, obj->color->b, calc_light(p, scene, obj));
 	return (color);
 }

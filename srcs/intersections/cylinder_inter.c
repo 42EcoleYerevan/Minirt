@@ -66,8 +66,8 @@ t_vec	calc_cylinder_normal(float t[2], t_vec vecs[2], t_cylinder *cylinder)
 	float	dist;
 
 	dist = choose_cylinder_dist(t, cylinder);
-	return (ft_vec_norm(ft_vec_substr(ft_vec_substr(ft_vec_mult(vecs[0], t[0]), ft_vec_mult(cylinder->direction, dist)),
-							  ft_vec_substr(cylinder->center, vecs[1]))));
+	return ft_vec_norm(ft_vec_substr(ft_vec_substr(ft_vec_mult(vecs[0], t[0]), ft_vec_mult(cylinder->direction, dist)),
+							  ft_vec_substr(cylinder->center, vecs[1])));
 }
 
 float calc_cylinder_dist(t_cylinder *cylinder, t_vec vecs[2], float t)
@@ -87,7 +87,7 @@ float calc_side_inter(t_vec vecs[2],t_vec *normal, t_cylinder *cylinder)
 	if (quadratic_cylinder(t, vecs, cylinder) == 0)
 		return (INFINITY);
 	cylinder->dist[0] = calc_cylinder_dist(cylinder, vecs, t[0]);
-	cylinder->dist[0] = calc_cylinder_dist(cylinder, vecs, t[1]);
+	cylinder->dist[1] = calc_cylinder_dist(cylinder, vecs, t[1]);
 	if (!((cylinder->dist[0] >= 0 && cylinder->dist[0] <= cylinder->height && t[0] > EPSILON)
 		|| (cylinder->dist[1] >= 0 && cylinder->dist[1] <= cylinder->height && t[0] > EPSILON)))
 		return (INFINITY);
@@ -104,20 +104,20 @@ float	calc_caps_inter(t_vec vecs[2], t_cylinder *cy)
 	center = ft_vec_add(cy->center, ft_vec_mult(cy->direction, cy->height));
 	inter[0] = plane_inter(vecs[1], vecs[0], cy->center, cy->direction);
 	inter[1] = plane_inter(vecs[1], vecs[0], center, cy->direction);
-	if (inter[0] < INFINITY || inter[1] < INFINITY)
+	if ((inter[0] < INFINITY && inter[0] > EPSILON) || (inter[1] < INFINITY && inter[1] > EPSILON))
 	{
 		v[0] = ft_vec_add(vecs[1], ft_vec_mult(vecs[0], inter[0]));
-		v[1] = ft_vec_add(vecs[1], ft_vec_mult(vecs[1], inter[0]));
+		v[1] = ft_vec_add(vecs[1], ft_vec_mult(vecs[0], inter[1]));
 		if ((inter[0] < INFINITY && ft_vec_dist(v[0], cy->center) <= cy->radius)
-			&& (inter[1] < INFINITY && ft_vec_dist(v[1], cy->center) <= cy->radius))
+			&& (inter[1] < INFINITY && ft_vec_dist(v[1], center) <= cy->radius))
 		{
 			 if (inter[0] < inter[1])
 				 return (inter[0]);
 			 return (inter[1]);
 		}
-		else if (inter[0] < INFINITY && ft_vec_dist(v[0], cy->center) <= cy->radius)
+		if (inter[0] < INFINITY && ft_vec_dist(v[0], cy->center) <= cy->radius)
 			return (inter[0]);
-		else if (inter[1] < INFINITY && ft_vec_dist(v[1], cy->center) <= cy->radius)
+		if (inter[1] < INFINITY && ft_vec_dist(v[1], center) <= cy->radius)
 			return (inter[1]);
 		return (INFINITY);
 	}
@@ -136,13 +136,23 @@ float	cylinder_inter(t_vec o, t_vec d, t_figure *figure) {
 	caps_inter = calc_caps_inter(vecs, (t_cylinder *)figure->data);
 	if (side_inter < INFINITY || caps_inter < INFINITY)
 	{
-		if (side_inter < caps_inter)
+		if (side_inter < caps_inter && side_inter > EPSILON)
 		{
 			figure->normal = normal;
+			// if (figure->normal.z <= 0)
+			// 	figure->normal = ft_vec_mult(figure->normal, -1);
 			return (side_inter);
 		}
-		figure->normal = ((t_cylinder *)figure->data)->direction;
-		return (caps_inter);
+		if (caps_inter < INFINITY && caps_inter > EPSILON)
+		{
+			if (((t_cylinder *)figure->data)->direction.z > 0)
+				figure->normal = ((t_cylinder *)figure->data)->direction;
+			else
+				figure->normal = ft_vec_mult(((t_cylinder *)figure->data)->direction, -1);
+			// printf("x = %f y = %f z = %f\n", figure->normal.x, figure->normal.y, figure->normal.z);
+			// printf("inter = %f\n", caps_inter);
+			return (caps_inter);
+		}
 	}
 	return (INFINITY);
 }
