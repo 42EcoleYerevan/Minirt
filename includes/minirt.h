@@ -178,6 +178,7 @@ void	ft_zmove_scene(t_scene *scene, float step);
 void	ft_move_obj(t_scene *scene, t_vec vector);
 
 // render 
-int render(void *scene);
+int		render(void *scene);
+void	ft_put_pixel(t_scene *scene, int x, int y, int color);
 
 #endif

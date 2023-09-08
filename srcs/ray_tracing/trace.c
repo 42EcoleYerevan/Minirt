@@ -82,8 +82,9 @@ void	scene_render(t_scene *scene, int mlx_x, int mlx_y)
 			scene->vecs[0] = new_4vector(x_angle * scene->vplane->x_pixel, \
 						y_angle * scene->vplane->y_pixel, -1, 1);
 			scene->vecs[1] = scene->cams->origin;
-			mlx_pixel_put(scene->mlx, scene->win, mlx_x, mlx_y,
-				ray_trace(scene));
+			ft_put_pixel(scene, mlx_x, mlx_y, ray_trace(scene));
+			/* mlx_pixel_put(scene->mlx, scene->win, mlx_x, mlx_y, */
+			/* 	ray_trace(scene)); */
 			mlx_x++;
 		}
 		mlx_y++;

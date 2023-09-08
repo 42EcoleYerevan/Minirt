@@ -8,10 +8,19 @@ int render(void *scene)
 	t_scene		*tscene;
 
 	tscene = (t_scene *)scene;
+	tscene->img = mlx_new_image(tscene->mlx, WIDTH, HEIGHT);
+	if (tscene->img == NULL)
+		err_exit("Error: mlx_new_image");
+	tscene->addr = mlx_get_data_addr(tscene->img, \
+			&tscene->bits_per_pixel, \
+			&tscene->line_length, \
+			&tscene->endian);
     scene_render(tscene, 0, 0);
+	mlx_put_image_to_window(tscene->mlx, tscene->win, tscene->img, 0, 0);
+	mlx_destroy_image(tscene->mlx, tscene->img);
 	if (tscene->ui == 1)
 		ft_text_render(tscene);
-	ft_print_scene(scene);
+	/* ft_print_scene(scene); */
 	return (0);
 }
 
