@@ -14,14 +14,19 @@ void ft_print_matrix(float *matrix)
 	}
 }
 
-int main()
+int main(int argc, char **argv)
 {
     void		*mlx;
     void		*win;
     t_scene		*scene;
 
+	if (argc != 2)
+	{
+		printf("Error\n");
+		return (1);
+	}
 	scene = new_scene(WIDTH, HEIGHT);
-	ft_parser("scenes/new.rt", scene);
+	ft_parser(argv[1], scene);
 	// ft_print_scene(scene);
 
     mlx = mlx_init();
