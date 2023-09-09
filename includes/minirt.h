@@ -6,6 +6,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 # include "./geometry.h"
 
@@ -17,8 +18,8 @@
 # include "../mlx_linux/mlx.h"
 # endif
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 # define EPSILON 0.001
 
 //shapes
@@ -178,6 +179,7 @@ void	ft_zmove_scene(t_scene *scene, float step);
 void	ft_move_obj(t_scene *scene, t_vec vector);
 
 // render 
-int render(void *scene);
+int		render(void *scene);
+void	ft_put_pixel(t_scene *scene, int x, int y, int color);
 
 #endif

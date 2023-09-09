@@ -65,25 +65,53 @@ int	ray_trace(t_scene *scene)
 	return (color);
 }
 
-void	scene_render(t_scene *scene, int mlx_x, int mlx_y)
+void	scene_render_squere(t_scene *scene, int row, int col)
 {
 	float		x_angle;
 	float		y_angle;
+	int			mlx_x;
+	int			mlx_y;
 
-	y_angle = scene->height / 2 + 1;
-	while (--y_angle >= (scene->height / 2) * (-1))
+	y_angle = scene->height / (2 * (row + 1)) + 1;
+	y_angle *= row;
+	while (--y_angle >= (scene->height / (2 * (row + 1))) * (-1))
 	{
-		x_angle = (scene->width / 2) * (-1) - 1;
+		x_angle = (scene->width / (2 * (col + 1))) * (-1) - 1;
+		x_angle *= col;
 		mlx_x = 0;
-		while (++x_angle <= scene->width / 2)
+		while (++x_angle <= scene->width / (2 * (col + 1)))
 		{
 			scene->vecs[0] = new_4vector(x_angle * scene->vplane->x_pixel, \
-						y_angle * scene->vplane->y_pixel, -1, 1);
+									y_angle * scene->vplane->y_pixel, -1, 1);
 			scene->vecs[1] = scene->cams->origin;
-			mlx_pixel_put(scene->mlx, scene->win, mlx_x, mlx_y,
-				ray_trace(scene));
+			ft_put_pixel(scene, mlx_x, mlx_y, ray_trace(scene));
 			mlx_x++;
 		}
 		mlx_y++;
 	}
+}
+
+void	scene_render(t_scene *scene, int mlx_x, int mlx_y)
+{
+	/* float		x_angle; */
+	/* float		y_angle; */
+
+	/* y_angle = scene->height / 4 + 1; */
+	/* while (--y_angle >= (scene->height / 4) * (-1)) */
+	/* { */
+	/* 	x_angle = (scene->width / 4) * (-1) - 1; */
+	/* 	mlx_x = 0; */
+	/* 	while (++x_angle <= scene->width / 4) */
+	/* 	{ */
+	/* 		scene->vecs[0] = new_4vector(x_angle * scene->vplane->x_pixel, \ */
+	/* 								y_angle * scene->vplane->y_pixel, -1, 1); */
+	/* 		scene->vecs[1] = scene->cams->origin; */
+	/* 		ft_put_pixel(scene, mlx_x, mlx_y, ray_trace(scene)); */
+	/* 		mlx_x++; */
+	/* 	} */
+	/* 	mlx_y++; */
+	/* } */
+	pthread_t	threads[4];
+
+	pthread_create(&threads[0], NULL, scene_render_squere, scene);
 }

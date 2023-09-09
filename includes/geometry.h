@@ -104,6 +104,10 @@ typedef struct	s_scene
 	void		*mlx;
 	void		*win;
 	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 	t_figure	*figure;
 	t_camera	*cams;
 	t_ambient	*ambient;
