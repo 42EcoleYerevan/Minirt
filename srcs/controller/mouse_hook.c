@@ -2,6 +2,7 @@
 
 void	ft_mouse_scroll_hook(int keycode, t_scene *scene)
 {
+	printf("mouse scroll %d\n", keycode);
 	if (keycode == 4)
 		scene->cams->origin.z -= 10;
 	else if (keycode == 5)
@@ -13,12 +14,14 @@ int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 	t_vec		d;
 	t_figure	*f;
 
+	printf("mouse down %d\n", keycode);
+	printf("x: %d, y: %d\n", x, y);
 	f = NULL;
 	scene->button = keycode;
 	if (keycode == 1)
 	{
 		d = new_vector(x * scene->vplane->x_pixel, y * scene->vplane->y_pixel, 1);
-		ft_vec_norm(d);
+		d = ft_vec_norm(d);
 		closest_inter(scene->figure, &f, scene->cams->origin, d);
 		if (!f)
 		{
@@ -33,6 +36,7 @@ int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 
 int ft_mouseup_hook(int keycode, int x, int y, t_scene *scene)
 {
+	printf("mouse up %d\n", keycode);
 	(void)scene;
 	(void)keycode;
 	(void)x;
