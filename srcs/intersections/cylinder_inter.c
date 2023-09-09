@@ -139,16 +139,13 @@ float	cylinder_inter(t_vec o, t_vec d, t_figure *figure) {
 		if (side_inter < caps_inter && side_inter > EPSILON)
 		{
 			figure->normal = normal;
-			// if (figure->normal.z <= 0)
-			// 	figure->normal = ft_vec_mult(figure->normal, -1);
 			return (side_inter);
 		}
 		if (caps_inter < INFINITY && caps_inter > EPSILON)
 		{
-			if (((t_cylinder *)figure->data)->direction.z > 0)
-				figure->normal = ((t_cylinder *)figure->data)->direction;
-			else
-				figure->normal = ft_vec_mult(((t_cylinder *)figure->data)->direction, -1);
+			figure->normal = ((t_cylinder *)figure->data)->direction;
+			if (figure->normal.z <= 0)
+				figure->normal = ft_vec_mult(figure->normal, -1);
 			// printf("x = %f y = %f z = %f\n", figure->normal.x, figure->normal.y, figure->normal.z);
 			// printf("inter = %f\n", caps_inter);
 			return (caps_inter);

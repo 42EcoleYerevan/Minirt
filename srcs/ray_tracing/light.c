@@ -5,7 +5,7 @@ float	cacl_diffuse(t_vec l, t_vec n, t_light *light)
 	float	dot;
 
 	dot = ft_vec_mult_dot(n, l);
-	printf("dot diffuse = %f lx %f ly %f lz %f nx %f ny %f nz %f\n", dot, l.x, l.y, n.z, n.x, n.y, n.z);
+//	printf("dot diffuse = %f nx %f ny %f nz %f\n", dot, n.x, n.y, n.z);
 	if (dot > 0)
 	{
 		return ((light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l)));
@@ -59,10 +59,7 @@ float	calc_light(t_vec p, t_scene *scene, t_figure *figure)
 	{
 		scene->vecs[2] = ft_vec_substr(light->center, p);
 		if (check_shadow(scene, &light, p))
-		{
-			printf("shadow here\n");
 			continue ;
-		}
 		bright += cacl_diffuse(scene->vecs[2], figure->normal, light);
 		if (figure->specular > 0)
 			bright += calc_specular(scene, light, figure);

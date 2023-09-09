@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 float	plane_inter(t_vec o, t_vec d, t_vec point, t_vec normal)
 {

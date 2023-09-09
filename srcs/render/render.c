@@ -11,7 +11,7 @@ int render(void *scene)
     scene_render(tscene, 0, 0);
 	if (tscene->ui == 1)
 		ft_text_render(tscene);
-	ft_print_scene(scene);
+//	ft_print_scene(scene);
 	return (0);
 }
 
