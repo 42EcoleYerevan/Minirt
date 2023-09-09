@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_act.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/09 15:06:38 by almeliky          #+#    #+#             */
+/*   Updated: 2023/09/09 15:06:38 by almeliky         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "geometry.h"
 #include "minirt.h"
 
 t_matrix	ft_mat_mult(t_matrix mat1, t_matrix mat2)
 {
 	t_matrix	out_mat;
-	int row;
-	int col;
-	int k;
+	int			row;
+	int			col;
+	int			k;
 
 	row = 0;
 	while (row < 4)
@@ -31,7 +43,7 @@ t_matrix	ft_mat_mult(t_matrix mat1, t_matrix mat2)
 t_matrix	ft_mat_sub(t_matrix mat1, t_matrix mat2)
 {
 	t_matrix	out_mat;
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < 16)
@@ -45,7 +57,7 @@ t_matrix	ft_mat_sub(t_matrix mat1, t_matrix mat2)
 t_matrix	ft_mat_add(t_matrix mat1, t_matrix mat2)
 {
 	t_matrix	out_mat;
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < 16)
