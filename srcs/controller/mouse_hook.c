@@ -13,6 +13,8 @@ int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 {
 	t_vec		d;
 	t_figure	*f;
+	float x_angle;
+	float y_angle;
 
 	printf("mouse down %d\n", keycode);
 	printf("x: %d, y: %d\n", x, y);
@@ -20,8 +22,14 @@ int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 	scene->button = keycode;
 	if (keycode == 1)
 	{
-		d = new_vector(x * scene->vplane->x_pixel, y * scene->vplane->y_pixel, 1);
+
+		y_angle = (scene->height / 2 + 1) - y;
+		x_angle = ((scene->width / 2) * (-1) - 1) + x;
+		printf("x_angle: %f, y_angle: %f\n", x_angle, y_angle);
+		d = new_4vector(x_angle * scene->vplane->x_pixel, \
+				y_angle * scene->vplane->y_pixel, -1, 1);
 		d = ft_vec_norm(d);
+		ft_print_vec(d);
 		closest_inter(scene->figure, &f, scene->cams->origin, d);
 		if (!f)
 		{
