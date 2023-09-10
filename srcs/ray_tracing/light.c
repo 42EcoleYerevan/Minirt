@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/09 16:08:06 by almeliky          #+#    #+#             */
+/*   Updated: 2023/09/09 16:08:06 by almeliky         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 float	cacl_diffuse(t_vec l, t_vec n, t_light *light)
@@ -6,7 +18,9 @@ float	cacl_diffuse(t_vec l, t_vec n, t_light *light)
 
 	dot = ft_vec_mult_dot(n, l);
 	if (dot > 0)
+	{
 		return ((light->brightness * dot) / (ft_vec_len(n) * ft_vec_len(l)));
+	}
 	return (0);
 }
 

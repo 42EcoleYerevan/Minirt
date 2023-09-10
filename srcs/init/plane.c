@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/25 15:34:59 by almeliky          #+#    #+#             */
+/*   Updated: 2023/09/09 19:49:42 by almeliky         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "geometry.h"
 #include "minirt.h"
 
@@ -27,6 +39,5 @@ t_figure	*new_plane(t_vec point, t_vec normal, t_color *color)
 	figure->color = color;
 	figure->specular = 100;
 	figure->next = NULL;
-	// printf("x - %f, y - %f, z - %f", plane->normal.x, plane->normal.y, plane->normal.z);
 	return (figure);
 }
