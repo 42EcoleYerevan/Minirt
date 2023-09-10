@@ -18,8 +18,8 @@
 # include "../mlx_linux/mlx.h"
 # endif
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 800
+# define HEIGHT 800
 # define EPSILON 0.001
 
 //shapes
@@ -177,6 +177,9 @@ void	ft_xmove_scene(t_scene *scene, float step);
 void	ft_ymove_scene(t_scene *scene, float step);
 void	ft_zmove_scene(t_scene *scene, float step);
 void	ft_move_obj(t_scene *scene, t_vec vector);
+void	ft_move_sphere(t_figure *figure, t_vec vector);
+void	ft_move_plane(t_figure *figure, t_vec vector);
+void	ft_move_cylinder(t_figure *figure, t_vec vector);
 
 // render 
 int		render(void *scene);
@@ -186,5 +189,17 @@ void	ft_put_pixel(t_scene *scene, int x, int y, int color);
 void	quadratic_vecs(t_vec *pv1, t_vec *pv2, t_cylinder *cy, t_vec vecs[2]);
 int		quadratic_cylinder(float t[2], t_vec vecs[2], t_cylinder *cy);
 float	choose_cylinder_dist(float t[2], t_cylinder *cy);
+
+// linux hook
+void ft_linux_hooks(int keycode, t_scene *scene);
+void ft_linux_rotate_keyhook(int keycode, t_scene *scene);
+void ft_linux_move_keyhook(int keycode, t_scene *scene);
+void ft_linux_ui_keyhook(int keycode, t_scene *scene);
+
+// mac hook
+void	ft_mac_hooks(int keycode, t_scene *scene);
+void	ft_rotate_keyhook(int keycode, t_scene *scene);
+void	ft_move_keyhook(int keycode, t_scene *scene);
+void	ft_ui_keyhook(int keycode, t_scene *scene);
 
 #endif

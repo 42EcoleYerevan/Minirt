@@ -4,41 +4,33 @@ void	ft_mouse_scroll_hook(int keycode, t_scene *scene)
 {
 	printf("mouse scroll %d\n", keycode);
 	if (keycode == 4)
-		scene->cams->origin.z -= 10;
+		ft_zmove_scene(scene, scene->zmove);
 	else if (keycode == 5)
-		scene->cams->origin.z += 10;
+		ft_zmove_scene(scene, -scene->zmove);
 }
 
 int	ft_mousedown_hook(int keycode, int x, int y, t_scene *scene)
 {
 	t_vec		d;
-	t_figure	*f;
 	float x_angle;
 	float y_angle;
 
 	printf("mouse down %d\n", keycode);
-	printf("x: %d, y: %d\n", x, y);
-	f = NULL;
+	scene->current_figure = NULL;
 	scene->button = keycode;
 	if (keycode == 1)
 	{
 
 		y_angle = (scene->height / 2 + 1) - y;
 		x_angle = ((scene->width / 2) * (-1) - 1) + x;
-		printf("x_angle: %f, y_angle: %f\n", x_angle, y_angle);
-		d = new_4vector(x_angle * scene->vplane->x_pixel, \
-				y_angle * scene->vplane->y_pixel, -1, 1);
-		d = ft_vec_norm(d);
-		ft_print_vec(d);
-		closest_inter(scene->figure, &f, scene->cams->origin, d);
-		if (!f)
-		{
-			puts("no figure");
+		d = ft_vec_norm(new_4vector(x_angle * scene->vplane->x_pixel, \
+				y_angle * scene->vplane->y_pixel, -1, 1));
+		closest_inter(scene->figure, &scene->current_figure, scene->cams->origin, d);
+		if (!scene->current_figure)
 			return (0);
-		}
-		printf("%d\n", f->type);
 	}
 	ft_mouse_scroll_hook(keycode, scene);
+	render(scene);
 	return (0);
 }
 
@@ -50,6 +42,7 @@ int ft_mouseup_hook(int keycode, int x, int y, t_scene *scene)
 	(void)x;
 	(void)y;
 	scene->button = -1;
+	render(scene);
 	return (0);
 }
 
@@ -60,13 +53,11 @@ int ft_mousemove_hook(int x, int y, t_scene *scene)
 
 	if (scene->button == 1 && old_x != 0 && old_y != 0)
 	{
-		/* scene->cams->origin->x -= x - old_x; */
-		/* scene->cams->origin->y += y - old_y; */
-		scene->cams->direction.x -= x - old_x;
-		scene->cams->direction.y += y - old_y;
-		ft_vec_norm(scene->cams->direction);
+		ft_xrotate_scene(scene, (y - old_y) * 0.01);
+		ft_yrotate_scene(scene, (x - old_x) * 0.01);
 	}
 	old_x = x;
 	old_y = y;
+	render(scene);
 	return (0);
 }

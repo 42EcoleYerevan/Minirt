@@ -1,9 +1,5 @@
 #include "minirt.h"
 
-static void	ft_move_sphere(t_figure *figure, t_vec vector);
-static void	ft_move_plane(t_figure *figure, t_vec vector);
-static void	ft_move_cylinder(t_figure *figure, t_vec vector);
-
 void	ft_move_obj(t_scene *scene, t_vec vector)
 {
 	t_figure	*figure;
@@ -21,7 +17,7 @@ void	ft_move_obj(t_scene *scene, t_vec vector)
 	}
 }
 
-static void	ft_move_sphere(t_figure *figure, t_vec vector)
+void	ft_move_sphere(t_figure *figure, t_vec vector)
 {
 	t_sphere	*sphere;
 
@@ -29,7 +25,7 @@ static void	ft_move_sphere(t_figure *figure, t_vec vector)
 	sphere->center = ft_vec_add(sphere->center, vector);
 }
 
-static void	ft_move_plane(t_figure *figure, t_vec vector)
+void	ft_move_plane(t_figure *figure, t_vec vector)
 {
 	t_plane	*plane;
 
@@ -37,7 +33,7 @@ static void	ft_move_plane(t_figure *figure, t_vec vector)
 	plane->point = ft_vec_add(plane->point, vector);
 }
 
-static void	ft_move_cylinder(t_figure *figure, t_vec vector)
+void	ft_move_cylinder(t_figure *figure, t_vec vector)
 {
 	t_cylinder	*cylinder;
 

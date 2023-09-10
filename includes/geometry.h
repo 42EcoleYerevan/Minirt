@@ -108,6 +108,7 @@ typedef struct	s_scene
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	t_figure	*current_figure;
 	t_figure	*figure;
 	t_camera	*cams;
 	t_ambient	*ambient;
