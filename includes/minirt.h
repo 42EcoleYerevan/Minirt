@@ -168,6 +168,9 @@ t_matrix	ft_xrotate_matrix(float angle);
 t_matrix	ft_yrotate_matrix(float angle);
 t_matrix	ft_zrotate_matrix(float angle);
 void		ft_rotate_objects(t_scene *scene, t_matrix matrix);
+void	ft_rotate_sphere(t_sphere *sphere, t_matrix matrix);
+void	ft_rotate_plane(t_figure *figure, t_matrix matrix);
+void	ft_rotate_cylinder(t_figure *figure, t_matrix matrix);
 
 // move
 void	ft_xrotate_scene(t_scene *scene, float angle);
