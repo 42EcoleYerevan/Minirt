@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_obj.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:33:04 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:33:05 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-void ft_rotate_objects(t_scene *scene, t_matrix matrix)
+void	ft_rotate_objects(t_scene *scene, t_matrix matrix)
 {
 	t_figure	*figure;
 
@@ -19,7 +31,6 @@ void ft_rotate_objects(t_scene *scene, t_matrix matrix)
 
 void	ft_rotate_sphere(t_sphere *sphere, t_matrix matrix)
 {
-
 	sphere->center = ft_vec_mult_mat(sphere->center, matrix);
 }
 

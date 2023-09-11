@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:28:37 by agladkov          #+#    #+#             */
-/*   Updated: 2023/08/10 11:48:04 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:32:20 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char	**ft_arrjoin(char **arr, char *str)
 	return (new_arr);
 }
 
-static void ft_arrcpy(char **dest_arr, char **src_arr)
+static void	ft_arrcpy(char **dest_arr, char **src_arr)
 {
-	int i;
+	int	i;
 
 	if (!src_arr)
 	{
@@ -58,7 +58,7 @@ static void ft_arrcpy(char **dest_arr, char **src_arr)
 
 int	ft_arrlen(char **arr)
 {
-	int i;
+	int	i;
 
 	if (!arr)
 		return (0);
@@ -70,7 +70,7 @@ int	ft_arrlen(char **arr)
 
 void	ft_free_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	if (!arr)
 		return ;
@@ -83,7 +83,7 @@ void	ft_free_arr(char **arr)
 	free(arr);
 }
 
-void ft_print_2d_array(char **arr)
+void	ft_print_2d_array(char **arr)
 {
 	if (!arr)
 		return ;

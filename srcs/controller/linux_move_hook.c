@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linux_move_hook.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:37:30 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:37:31 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	ft_linux_obj_move(t_scene *scene, int keycode)
 {
-	t_vec vec;
+	t_vec	vec;
 
 	if (keycode == 65362)
 		vec = new_vector(0, 0, -scene->zmove);
@@ -23,7 +35,7 @@ void	ft_linux_obj_move(t_scene *scene, int keycode)
 
 void	ft_linux_rotate_figure_hook(t_scene *scene, int keycode)
 {
-	t_matrix matrix;
+	t_matrix	matrix;
 
 	if (keycode == 97)
 		matrix = ft_xrotate_matrix(scene->x_angle);

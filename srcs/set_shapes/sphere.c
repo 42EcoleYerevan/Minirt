@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:24:09 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:24:10 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-int ft_set_sphere(char **tokens, t_scene *scene)
+int	ft_set_sphere(char **tokens, t_scene *scene)
 {
 	t_figure	*sphere;
 	t_vec		center;

@@ -6,13 +6,13 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 15:06:38 by almeliky          #+#    #+#             */
-/*   Updated: 2023/09/10 17:32:16 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:34:21 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int ft_close(t_scene *scene)
+int	ft_close(t_scene *scene)
 {
 	mlx_destroy_window(scene->mlx, scene->win);
 	exit(0);

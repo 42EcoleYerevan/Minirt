@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_scene.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:32:48 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:32:49 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-void	ft_xrotate_scene(t_scene *scene, float angle);
-void	ft_yrotate_scene(t_scene *scene, float angle);
-void	ft_zrotate_scene(t_scene *scene, float angle);
+void		ft_xrotate_scene(t_scene *scene, float angle);
+void		ft_yrotate_scene(t_scene *scene, float angle);
+void		ft_zrotate_scene(t_scene *scene, float angle);
 static void	ft_rotate_lights(t_light *light, t_matrix matrix);
 
 void	ft_xrotate_scene(t_scene *scene, float angle)

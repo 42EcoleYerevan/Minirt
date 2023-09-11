@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator_utils2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 12:56:33 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:00:37 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 float	ft_str_to_int_part(char *str)
 {
-	float result;
-	int	i;
+	float	result;
+	int		i;
 
 	result = 0.0;
 	i = 0;
@@ -17,8 +29,8 @@ float	ft_str_to_int_part(char *str)
 
 float	ft_str_to_decimal_part(char *str)
 {
-	int	i;
-	float result;
+	int		i;
+	float	result;
 
 	i = 0;
 	while (*str && *str != '.')

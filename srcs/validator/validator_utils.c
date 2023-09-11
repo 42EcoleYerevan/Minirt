@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:00:57 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:00:59 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-static int ft_is_valid_str_float(char *str);
+static int	ft_is_valid_str_float(char *str);
 
 float	ft_atof(char *str)
 {
@@ -42,7 +54,7 @@ int	ft_is_valid_float(char *str)
 	return (0);
 }
 
-static int ft_is_valid_str_float(char *str)
+static int	ft_is_valid_str_float(char *str)
 {
 	int			i;
 	const char	*tmp = "1234567890.-";

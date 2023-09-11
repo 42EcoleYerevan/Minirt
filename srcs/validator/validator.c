@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:19:46 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:19:47 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	ft_validate_args(char **tokens);
 
 int	ft_validator(char **lines)
 {
-	int n;
-	char **tokens;
+	int		n;
+	char	**tokens;
 
 	ft_is_valid_num_of_cams(lines);
 	n = 0;
@@ -25,17 +37,17 @@ int	ft_validator(char **lines)
 int	ft_validate_args(char **tokens)
 {
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
-		return ft_is_valid_ambient(tokens);
+		return (ft_is_valid_ambient(tokens));
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)
-		return ft_is_valid_cam(tokens);
+		return (ft_is_valid_cam(tokens));
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
-		return ft_is_valid_light(tokens);
+		return (ft_is_valid_light(tokens));
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		return ft_is_valid_sphere(tokens);
+		return (ft_is_valid_sphere(tokens));
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		return ft_is_valid_plane(tokens);
+		return (ft_is_valid_plane(tokens));
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		return ft_is_valid_cylinder(tokens);
+		return (ft_is_valid_cylinder(tokens));
 	else
 		return (1);
 }

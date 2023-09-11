@@ -6,37 +6,11 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:28:48 by almeliky          #+#    #+#             */
-/*   Updated: 2023/09/09 18:01:21 by almeliky         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:29:51 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
-
-float	closest_inter(t_figure *figure, t_figure **obj, t_vec o, t_vec d)
-{
-	float	min_t;
-	float	t;
-
-	t = INFINITY;
-	min_t = INFINITY;
-	while (figure)
-	{
-		if (figure->type == SPHERE)
-			t = sphere_inter(o, d, (t_sphere *)figure->data);
-		else if (figure->type == CYLINDER)
-			t = cylinder_inter(o, d, figure);
-		else
-			t = plane_inter(o, d, (((t_plane *)figure->data)->point),
-					(((t_plane *)figure->data)->normal));
-		if ((t > EPSILON) && (t < min_t))
-		{
-			min_t = t;
-			*obj = figure;
-		}
-		figure = figure->next;
-	}
-	return (min_t);
-}
+#include "minirt.h"
 
 t_vec	create_sphere_norm(t_vec p, t_vec center)
 {

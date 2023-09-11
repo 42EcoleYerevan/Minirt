@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:24:48 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:24:49 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	ft_light_last_add(t_scene *scene, t_light *light);
 t_light	*ft_last_light(t_scene *scene);
 
-int ft_set_light(char **tokens, t_scene *scene)
+int	ft_set_light(char **tokens, t_scene *scene)
 {
-	t_light *light;
+	t_light	*light;
 	t_vec	center;
 	t_color	*color;
 

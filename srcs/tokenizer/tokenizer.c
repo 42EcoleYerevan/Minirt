@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:21:44 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:21:45 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static char	**ft_read_file(char *path);
 static int	ft_is_empty_line(char *line);
 static void	ft_delete_empty_lines(char **lines);
-static void ft_shift_arr(char **lines, int i);
+static void	ft_shift_arr(char **lines, int i);
 
-char **ft_read_scene(char *path)
+char	**ft_read_scene(char *path)
 {
-	char **text;
+	char	**text;
 
 	text = ft_read_file(path);
 	ft_trim_newline(text);
 	ft_delete_empty_lines(text);
-	return text;
+	return (text);
 }
 
 static void	ft_delete_empty_lines(char **lines)
@@ -31,7 +43,7 @@ static void	ft_delete_empty_lines(char **lines)
 	}
 }
 
-static void ft_shift_arr(char **lines, int i)
+static void	ft_shift_arr(char **lines, int i)
 {
 	while (lines[i])
 	{
@@ -42,7 +54,7 @@ static void ft_shift_arr(char **lines, int i)
 
 static int	ft_is_empty_line(char *line)
 {
-	int i;
+	int	i;
 	int	isempty;
 
 	i = 0;
@@ -61,9 +73,9 @@ static int	ft_is_empty_line(char *line)
 
 static char	**ft_read_file(char *path)
 {	
-	int fd;
-	char *line;
-	char **strarr;
+	int		fd;
+	char	*line;
+	char	**strarr;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)

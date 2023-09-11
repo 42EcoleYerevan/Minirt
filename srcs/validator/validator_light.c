@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator_light.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:01:33 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:01:34 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-int ft_is_valid_light(char **tokens)
+int	ft_is_valid_light(char **tokens)
 {
-	float ratio;
+	float	ratio;
 
 	if (ft_is_valid_vector(tokens[1]))
 		return (1);

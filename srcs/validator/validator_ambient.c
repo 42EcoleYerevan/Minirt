@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator_ambient.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:18:22 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:18:23 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	ft_is_valid_ambient(char **tokens)
 {
-	float ratio;
+	float	ratio;
 
 	if (ft_arrlen(tokens) != 3)
 		return (1);

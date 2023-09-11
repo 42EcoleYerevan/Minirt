@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mac_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:36:44 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:36:45 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-void ft_mac_hooks(int keycode, t_scene *scene)
+void	ft_mac_hooks(int keycode, t_scene *scene)
 {
 	ft_ui_keyhook(keycode, scene);
 	if (scene->current_figure)
@@ -13,7 +25,7 @@ void ft_mac_hooks(int keycode, t_scene *scene)
 	ft_move_keyhook(keycode, scene);
 }
 
-void ft_rotate_keyhook(int keycode, t_scene *scene)
+void	ft_rotate_keyhook(int keycode, t_scene *scene)
 {
 	if (keycode == 13)
 		ft_xrotate_scene(scene, scene->x_angle);

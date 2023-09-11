@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mac_move_hook.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:36:31 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:37:02 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	ft_mac_figure_move_hook(t_scene *scene, int keycode)
 {
-	t_vec vec;
+	t_vec	vec;
 
 	if (keycode == 126)
 		vec = new_vector(0, 0, -scene->zmove);
@@ -23,7 +35,7 @@ void	ft_mac_figure_move_hook(t_scene *scene, int keycode)
 
 void	ft_mac_rotate_figure_hook(t_scene *scene, int keycode)
 {
-	t_matrix matrix;
+	t_matrix	matrix;
 
 	if (keycode == 13)
 		matrix = ft_xrotate_matrix(scene->x_angle);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validator_values.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 12:55:57 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 12:56:20 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	ft_is_valid_color(char *str)
@@ -52,8 +64,7 @@ int	ft_is_valid_vector(char *str)
 
 int	ft_is_valid_fov(char *str)
 {
-
-	float fov;
+	float	fov;
 
 	fov = ft_atof(str);
 	if (fov < 0.0 || fov > 180.0)

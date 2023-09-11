@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linux_hook.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:37:52 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:37:53 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-void ft_linux_hooks(int keycode, t_scene *scene)
+void	ft_linux_hooks(int keycode, t_scene *scene)
 {
 	if (scene->current_figure)
 	{
@@ -12,7 +24,7 @@ void ft_linux_hooks(int keycode, t_scene *scene)
 	ft_linux_ui_keyhook(keycode, scene);
 }
 
-void ft_linux_rotate_keyhook(int keycode, t_scene *scene)
+void	ft_linux_rotate_keyhook(int keycode, t_scene *scene)
 {
 	if (keycode == 119)
 		ft_xrotate_scene(scene, scene->x_angle);
@@ -28,7 +40,7 @@ void ft_linux_rotate_keyhook(int keycode, t_scene *scene)
 		ft_zrotate_scene(scene, -scene->z_angle);
 }
 
-void ft_linux_move_keyhook(int keycode, t_scene *scene)
+void	ft_linux_move_keyhook(int keycode, t_scene *scene)
 {
 	if (keycode == 65362)
 		ft_zmove_scene(scene, scene->zmove);
@@ -44,7 +56,7 @@ void ft_linux_move_keyhook(int keycode, t_scene *scene)
 		ft_ymove_scene(scene, scene->ymove);
 }
 
-void ft_linux_ui_keyhook(int keycode, t_scene *scene)
+void	ft_linux_ui_keyhook(int keycode, t_scene *scene)
 {
 	if (keycode == 117)
 		scene->ui = -scene->ui;
