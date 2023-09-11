@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:07:00 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 17:14:21 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:01:42 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			ft_set_cylinder(char **tokens, t_scene *scene);
 void		ft_add_figure(t_scene *scene, t_figure *figure);
 
 // validator
+int			ft_is_empty_file(char **lines);
 int			ft_is_valid_extension(char *filename);
 int			ft_validator(char **lines);
 int			ft_is_valid_float(char *str);

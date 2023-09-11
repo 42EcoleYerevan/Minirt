@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:20:53 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 13:20:54 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:02:58 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_trim_newline(char **lines)
 	char	*tmp;
 
 	n = 0;
-	while (lines[n])
+	if (!lines)
+		err_exit("The file is empty\n");
+	while (lines && lines[n])
 	{
 		tmp = lines[n];
 		lines[n] = ft_strtrim(lines[n], "\n\r\t\v\f");
