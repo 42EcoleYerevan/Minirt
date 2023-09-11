@@ -1,8 +1,4 @@
-#include "geometry.h"
 #include "minirt.h"
-
-void	ft_move_figure(t_figure *figure, t_vec vec);
-void	ft_linux_obj_move(t_scene *scene, int keycode);
 
 void ft_linux_hooks(int keycode, t_scene *scene)
 {
@@ -54,35 +50,4 @@ void ft_linux_ui_keyhook(int keycode, t_scene *scene)
 		scene->ui = -scene->ui;
 	else if (keycode == 65307)
 		exit(0);
-}
-
-void	ft_linux_obj_move(t_scene *scene, int keycode)
-{
-	t_vec vec;
-
-	if (keycode == 65362)
-		vec = new_vector(0, 0, -scene->zmove);
-	else if (keycode == 65361)
-		vec = new_vector(-scene->xmove, 0, 0);
-	else if (keycode == 65364)
-		vec = new_vector(0, 0, scene->zmove);
-	else if (keycode == 65363)
-		vec = new_vector(scene->xmove, 0, 0);
-	else if (keycode == 122)
-		vec = new_vector(0, -scene->ymove, 0);
-	else if (keycode == 120)
-		vec = new_vector(0, scene->ymove, 0);
-	else
-		return ;
-	ft_move_figure(scene->current_figure, vec);
-}
-
-void ft_move_figure(t_figure *figure, t_vec vec)
-{
-	if (figure->type == SPHERE)
-		ft_move_sphere(figure, vec);
-	else if (figure->type == PLANE)
-		ft_move_plane(figure, vec);
-	else if (figure->type == CYLINDER)
-		ft_move_cylinder(figure, vec);
 }

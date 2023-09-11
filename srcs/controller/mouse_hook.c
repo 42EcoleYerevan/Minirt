@@ -53,7 +53,7 @@ int ft_mousemove_hook(int x, int y, t_scene *scene)
 
 	if (scene->button == 1 && old_x != 0 && old_y != 0)
 	{
-		ft_xrotate_scene(scene, (y - old_y) * 0.01);
+		ft_xrotate_scene(scene, (y - old_y) * -0.01);
 		ft_yrotate_scene(scene, (x - old_x) * 0.01);
 	}
 	old_x = x;

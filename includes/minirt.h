@@ -183,6 +183,10 @@ void	ft_move_obj(t_scene *scene, t_vec vector);
 void	ft_move_sphere(t_figure *figure, t_vec vector);
 void	ft_move_plane(t_figure *figure, t_vec vector);
 void	ft_move_cylinder(t_figure *figure, t_vec vector);
+void	ft_rotate_object(t_scene *scene, t_matrix matrix);
+void	ft_rotate_plane_norm(t_plane *plane, t_matrix matrix);
+void	ft_rotate_cylinder_norm(t_cylinder *cylinder, t_matrix matrix);
+void	ft_move_object(t_figure *figure, t_vec vec);
 
 // render 
 int		render(void *scene);
@@ -194,15 +198,21 @@ int		quadratic_cylinder(float t[2], t_vec vecs[2], t_cylinder *cy);
 float	choose_cylinder_dist(float t[2], t_cylinder *cy);
 
 // linux hook
-void ft_linux_hooks(int keycode, t_scene *scene);
-void ft_linux_rotate_keyhook(int keycode, t_scene *scene);
-void ft_linux_move_keyhook(int keycode, t_scene *scene);
-void ft_linux_ui_keyhook(int keycode, t_scene *scene);
+void	ft_linux_hooks(int keycode, t_scene *scene);
+void	ft_linux_rotate_keyhook(int keycode, t_scene *scene);
+void	ft_linux_rotate_figure_hook(t_scene *scene, int keycode);
+void	ft_linux_move_keyhook(int keycode, t_scene *scene);
+void	ft_linux_ui_keyhook(int keycode, t_scene *scene);
+void	ft_linux_move_figure(t_figure *figure, t_vec vec);
+void	ft_linux_obj_move(t_scene *scene, int keycode);
 
 // mac hook
 void	ft_mac_hooks(int keycode, t_scene *scene);
 void	ft_rotate_keyhook(int keycode, t_scene *scene);
 void	ft_move_keyhook(int keycode, t_scene *scene);
 void	ft_ui_keyhook(int keycode, t_scene *scene);
+void	ft_mac_move_object(t_figure *figure, t_vec vec);
+void	ft_mac_figure_move_hook(t_scene *scene, int keycode);
+void	ft_mac_rotate_figure_hook(t_scene *scene, int keycode);
 
 #endif
