@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   geometry.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 13:57:39 by agladkov          #+#    #+#             */
+/*   Updated: 2023/09/11 13:57:40 by agladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GEOMETRY_H
 # define GEOMETRY_H
 
@@ -8,7 +20,7 @@ enum e_figure
 	CYLINDER
 };
 
-typedef struct	s_vec
+typedef struct s_vec
 {
 	float	x;
 	float	y;
@@ -21,7 +33,7 @@ typedef struct s_matrix
 	float	m[16];
 }	t_matrix;
 
-typedef struct	s_abc
+typedef struct s_abc
 {
 	float	a;
 	float	b;
@@ -43,9 +55,10 @@ typedef struct s_ambient
 	float		brightness;
 }	t_ambient;
 
-typedef struct	s_sphere {
-	t_vec			center;
-	float			radius;
+typedef struct s_sphere
+{
+	t_vec	center;
+	float	radius;
 }	t_sphere;
 
 typedef struct s_plane
@@ -71,7 +84,7 @@ typedef struct s_light
 	struct s_light	*next;
 }	t_light;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vec	origin;
 	t_vec	direction;
@@ -91,7 +104,7 @@ typedef struct s_figure
 	struct s_figure	*next;
 }	t_figure;
 
-typedef struct	s_vplane
+typedef struct s_vplane
 {
 	float	width;
 	float	height;
@@ -99,7 +112,7 @@ typedef struct	s_vplane
 	float	y_pixel;
 }	t_vplane;
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	void		*mlx;
 	void		*win;
@@ -117,10 +130,10 @@ typedef struct	s_scene
 	t_vec		vecs[3];
 	float		width;
 	float		height;
-	int 		button;
-	float 		x_angle;
-	float 		y_angle;
-	float 		z_angle;
+	int			button;
+	float		x_angle;
+	float		y_angle;
+	float		z_angle;
 	float		xmove;
 	float		ymove;
 	float		zmove;
