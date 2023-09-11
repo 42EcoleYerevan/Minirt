@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:36:44 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 13:36:45 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:14:55 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void	ft_ui_keyhook(int keycode, t_scene *scene)
 {
 	if (keycode == 32)
 		scene->ui = -scene->ui;
+	else if (keycode == 35)
+		ft_save_map(scene);
+	else if (keycode == 31)
+		ft_add_current_figure(scene);
 	else if (keycode == 53)
 		exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:07:00 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 14:07:01 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:14:21 by agladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,15 @@ void		ft_ui_keyhook(int keycode, t_scene *scene);
 void		ft_mac_move_object(t_figure *figure, t_vec vec);
 void		ft_mac_figure_move_hook(t_scene *scene, int keycode);
 void		ft_mac_rotate_figure_hook(t_scene *scene, int keycode);
+
+// save
+char		*ft_ftoa(float n);
+char		*ft_itohex(int n);
+char		*ft_rgb_to_str(t_color *color);
+void		ft_write_float(float n, int fd);
+void		ft_write_vector(t_vec vec, int fd);
+void		ft_write_color(t_color *color, int fd);
+void		ft_save_map(t_scene *scene);
+void		ft_add_current_figure(t_scene *scene);
 
 #endif
