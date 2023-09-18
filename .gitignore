@@ -5,4 +5,5 @@
 *test
 *.gen
 a.out
+miniRT
 README.md

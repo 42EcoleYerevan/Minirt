@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:19:46 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 17:47:44 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:09:17 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_validator(char **lines)
 	int		n;
 	char	**tokens;
 
-	ft_is_valid_num_of_cams(lines);
+	if (ft_is_valid_num_of_cams(lines))
+		return (1);
 	n = 0;
 	while (lines[n])
 	{

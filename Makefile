@@ -1,4 +1,4 @@
-NAME=a.out
+NAME=miniRT
 HEADER_DIR=./includes
 SRC_DIR=./srcs
 SRCS=$(wildcard $(SRC_DIR)/*.c)

@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:54:33 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 12:55:36 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/18 20:06:21 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	err_exit(char *str)
 {
-	int	val;
-
 	while (*str)
-		val = write(2, str++, 1);
+		write(2, str++, 1);
 	exit(1);
 }
