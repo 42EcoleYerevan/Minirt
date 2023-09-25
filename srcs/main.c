@@ -6,7 +6,7 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:03:52 by almeliky          #+#    #+#             */
-/*   Updated: 2023/09/11 16:43:20 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:37:49 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	scene->mlx = mlx;
 	win = mlx_new_window(mlx, scene->width, scene->height, "miniRT");
 	scene->win = win;
+	ft_move_scene_to_camera(scene, scene->cams);
 	render(scene);
 	ft_init_hooks(scene);
 	mlx_loop(mlx);

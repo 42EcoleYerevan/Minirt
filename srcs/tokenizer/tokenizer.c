@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:21:44 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 18:01:22 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:45:53 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	ft_is_empty_line(char *line)
 }
 
 static char	**ft_read_file(char *path)
-{	
+{
 	int		fd;
 	char	*line;
 	char	**strarr;

@@ -6,7 +6,7 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:28:48 by almeliky          #+#    #+#             */
-/*   Updated: 2023/09/11 13:29:51 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:46:47 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	scene_render(t_scene *scene, int mlx_x, int mlx_y)
 		mlx_x = 0;
 		while (++x_angle <= scene->width / 2)
 		{
-		scene->vecs[0] = new_4vector(x_angle * scene->vplane->x_pixel, \
-		y_angle * scene->vplane->y_pixel, -1, 1);
+			scene->vecs[0] = new_4vector(x_angle * scene->vplane->x_pixel, \
+			y_angle * scene->vplane->y_pixel, -1, 1);
 			scene->vecs[1] = scene->cams->origin;
 			ft_put_pixel(scene, mlx_x, mlx_y, ray_trace(scene));
 			mlx_x++;

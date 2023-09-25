@@ -6,7 +6,7 @@
 /*   By: agladkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:07:00 by agladkov          #+#    #+#             */
-/*   Updated: 2023/09/11 18:01:42 by agladkov         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:36:37 by adamsonbo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			ft_parse_map(char **lines, t_scene *scene);
 int			ft_set_shape(char **tokens, t_scene *scene);
 
 // math
+t_vec		ft_vec_sub(t_vec vector1, t_vec vector2);
 t_vec		ft_vec_mult(t_vec vec, float mult);
 float		ft_vec_len(t_vec vec);
 t_vec		ft_vec_substr(t_vec vec1, t_vec vec2);
